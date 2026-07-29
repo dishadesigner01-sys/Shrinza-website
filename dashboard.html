@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SHRINZA | Order Management Dashboard</title>
+    <link rel="stylesheet" href="styles/style.css">
+    <link rel="stylesheet" href="styles/dashboard.css">
+</head>
+
+<body class="dashboard-body">
+
+    <!-- Dashboard Layout -->
+    <div class="dashboard-container">
+
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h2 class="brand-title">SHRINZA</h2>
+                <span class="brand-subtitle">Admin Portal</span>
+            </div>
+            <nav class="sidebar-nav">
+                <a href="#" class="nav-item active">
+                    <span class="icon">📦</span>
+                    <span class="label">Orders</span>
+                </a>
+                <a href="#" class="nav-item">
+                    <span class="icon">👗</span>
+                    <span class="label">Products</span>
+                </a>
+                <a href="#" class="nav-item">
+                    <span class="icon">👥</span>
+                    <span class="label">Customers</span>
+                </a>
+                <a href="#" class="nav-item">
+                    <span class="icon">⚙️</span>
+                    <span class="label">Settings</span>
+                </a>
+            </nav>
+            <div class="sidebar-footer">
+                <a href="index.html" class="nav-item back-link">
+                    <span class="icon">←</span>
+                    <span class="label">Back to Store</span>
+                </a>
+            </div>
+        </aside>
+
+        <!-- Main Content Area -->
+        <main class="main-content">
+            <header class="topbar">
+                <div class="search-bar">
+                    <input type="text" placeholder="Search orders, customers, or items...">
+                </div>
+                <div class="user-profile">
+                    <span>Admin User</span>
+                    <div class="avatar">A</div>
+                </div>
+            </header>
+
+            <div class="content-wrapper">
+                <div class="page-header">
+                    <h1>Order Management</h1>
+                    <div class="header-actions">
+                        <button class="btn btn-outline" id="refresh-orders-btn">⟳ Refresh</button>
+                    </div>
+                </div>
+
+                <!-- Stats Overview -->
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <h3>Total Orders</h3>
+                        <p class="stat-value" id="stat-total">0</p>
+                    </div>
+                    <div class="stat-card">
+                        <h3>Pending Dispatch</h3>
+                        <p class="stat-value text-burgundy" id="stat-pending">0</p>
+                    </div>
+                    <div class="stat-card">
+                        <h3>Dispatched</h3>
+                        <p class="stat-value" id="stat-dispatched">0</p>
+                    </div>
+                </div>
+
+                <!-- Orders Table -->
+                <div class="table-container">
+                    <div class="table-header">
+                        <h2>Recent Orders</h2>
+                        <div class="table-filters">
+                            <select id="status-filter">
+                                <option value="all">All Statuses</option>
+                                <option value="pending">Pending</option>
+                                <option value="dispatched">Dispatched</option>
+                                <option value="delivered">Delivered</option>
+                            </select>
+                        </div>
+                    </div>
+                    <table class="orders-table">
+                        <thead>
+                            <tr>
+                                <th>Order ID</th>
+                                <th>Date</th>
+                                <th>Customer</th>
+                                <th>Amount</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="orders-tbody">
+                            <!-- Populated by JS -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Push to Logistics Notification Toast -->
+    <div id="toast-container" class="toast-container"></div>
+
+    <script src="scripts/dashboard.js"></script>
+</body>
+
+</html>
