@@ -495,7 +495,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const dismissSplash = () => {
         if (!splashScreen) return;
         window.setTimeout(() => {
-            splashScreen.classList.add('hidden');
+            splashScreen.classList.add('is-hidden');
             document.body.style.overflow = '';
         }, 2200);
     };
