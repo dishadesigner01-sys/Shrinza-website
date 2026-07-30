@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SHRINZA | My Orders</title>
+    <link rel="stylesheet" href="styles/style.css">
+    <link rel="stylesheet" href="styles/orders.css">
+</head>
+
+<body class="orders-body">
+
+    <header class="orders-header">
+        <a href="index.html" class="orders-logo">SHRINZA</a>
+        <a href="index.html" class="btn btn-outline" style="padding: 0.5rem 1rem; font-size: 0.8rem;">Back to
+            Store</a>
+    </header>
+
+    <main class="orders-main">
+
+        <div id="orders-logged-out" class="orders-empty hidden">
+            <h2>You're not logged in</h2>
+            <p>Please login from the store to view your orders.</p>
+            <a href="index.html" class="btn btn-primary">Go to Store</a>
+        </div>
+
+        <div id="orders-logged-in" class="hidden">
+            <div class="orders-page-header">
+                <h1>My Orders</h1>
+                <p class="orders-customer-line">Hi <strong id="orders-customer-name"></strong> &middot; Customer ID:
+                    <strong id="orders-customer-id"></strong>
+                </p>
+            </div>
+
+            <div id="orders-empty-state" class="orders-empty hidden">
+                <h2>No orders yet</h2>
+                <p>You haven't placed any orders with SHRINZA yet.</p>
+                <a href="index.html#featured" class="btn btn-primary">Start Shopping</a>
+            </div>
+
+            <div id="my-orders-list" class="my-orders-list"></div>
+        </div>
+
+    </main>
+
+    <script src="scripts/store.js"></script>
+    <script src="scripts/orders.js"></script>
+</body>
+
+</html>
