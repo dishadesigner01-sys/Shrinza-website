@@ -261,7 +261,18 @@
     color: #2e7d32;
 }
 
-.btn-dispatch {
+.badge-paid {
+    background-color: #e8f5e9;
+    color: #2e7d32;
+}
+
+.badge-failed {
+    background-color: #fdecea;
+    color: #c62828;
+}
+
+.btn-dispatch,
+.btn-track {
     background-color: var(--color-primary);
     color: white;
     border: none;
@@ -271,6 +282,17 @@
     font-size: 0.8rem;
     font-weight: 600;
     transition: var(--transition-standard);
+}
+
+.btn-track {
+    background-color: transparent;
+    color: var(--color-primary);
+    border: 1px solid rgba(128, 0, 32, 0.3);
+}
+
+.btn-track:hover {
+    background-color: var(--color-primary);
+    color: white;
 }
 
 .btn-dispatch:hover {
@@ -330,4 +352,32 @@
         opacity: 0;
         visibility: hidden;
     }
+}
+
+/* Settings Panel (Logistics API Connection) */
+.settings-panel-card {
+    max-width: 640px;
+}
+
+.settings-intro {
+    font-size: 0.9rem;
+    color: #666;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+}
+
+.logistics-settings-form .form-group input {
+    background-color: #fbfbfd;
+}
+
+/* Order Tracking Modal */
+.tracking-modal-body p {
+    font-size: 0.9rem;
+    color: #444;
+    margin-bottom: 0.6rem;
+    line-height: 1.5;
+}
+
+.tracking-modal-body strong {
+    color: var(--color-text-dark);
 }

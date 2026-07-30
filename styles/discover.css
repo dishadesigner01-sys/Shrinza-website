@@ -1,0 +1,201 @@
+/* --- Discover Page (Creative Director) --- */
+
+.discover-label {
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-size: 0.85rem;
+}
+
+/* Hero */
+.discover-hero {
+    height: 60vh;
+    min-height: 420px;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-color: #222;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: var(--color-white);
+}
+
+.discover-hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.45);
+}
+
+.discover-hero-content {
+    position: relative;
+    z-index: 1;
+    max-width: 700px;
+    padding: var(--spacing-sm);
+    animation: fadeIn 1.2s ease-out;
+}
+
+.discover-eyebrow {
+    color: var(--color-accent);
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    font-size: 0.85rem;
+    margin-bottom: 0.75rem;
+}
+
+.discover-hero-content h1 {
+    font-size: 2.75rem;
+    color: var(--color-cream);
+    margin-bottom: 0.75rem;
+}
+
+.discover-hero-content p {
+    font-size: 1.1rem;
+    font-style: italic;
+}
+
+/* Director Introduction */
+.discover-intro {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-lg);
+}
+
+.discover-intro-image {
+    flex: 1;
+}
+
+.discover-intro-image img {
+    border-radius: 4px;
+    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.18);
+}
+
+.discover-intro-content {
+    flex: 1;
+}
+
+.discover-intro-content h2 {
+    font-size: 2.25rem;
+    margin-bottom: 0.5rem;
+}
+
+.discover-directors-names {
+    font-family: var(--font-brand);
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--color-text-dark);
+    letter-spacing: 0.5px;
+    margin-bottom: 1.5rem;
+}
+
+.discover-intro-content p {
+    color: #555;
+    margin-bottom: 1.25rem;
+    line-height: 1.8;
+}
+
+/* Pull Quote */
+.discover-quote {
+    background-color: var(--color-primary);
+    color: var(--color-cream);
+    text-align: center;
+    padding: var(--spacing-lg) var(--spacing-md);
+}
+
+.discover-quote blockquote {
+    max-width: 760px;
+    margin: 0 auto 1.25rem;
+    font-family: var(--font-heading);
+    font-size: 1.6rem;
+    font-style: italic;
+    font-weight: 400;
+    line-height: 1.5;
+}
+
+.discover-quote cite {
+    display: block;
+    font-style: normal;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-size: 0.8rem;
+    color: var(--color-accent);
+}
+
+/* Philosophy Pillars */
+.discover-pillars {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: var(--spacing-lg);
+    text-align: center;
+}
+
+.discover-pillar-number {
+    display: block;
+    font-family: var(--font-heading);
+    font-size: 1.5rem;
+    color: var(--color-accent);
+    margin-bottom: 0.75rem;
+}
+
+.discover-pillar h3 {
+    color: var(--color-primary);
+    margin-bottom: 0.75rem;
+    font-size: 1.25rem;
+}
+
+.discover-pillar p {
+    color: #666;
+    font-size: 0.95rem;
+    line-height: 1.6;
+}
+
+/* Atelier (reuses .bridal-section layout) */
+.discover-atelier {
+    background-color: var(--color-white);
+}
+
+/* Closing CTA */
+.discover-cta {
+    text-align: center;
+    padding: var(--spacing-xl) var(--spacing-md);
+}
+
+.discover-cta h2 {
+    font-size: 2.25rem;
+    color: var(--color-primary);
+    margin-bottom: 0.75rem;
+}
+
+.discover-cta p {
+    color: #666;
+    margin-bottom: 2rem;
+}
+
+.discover-cta-actions {
+    display: flex;
+    justify-content: center;
+    gap: 1.25rem;
+    flex-wrap: wrap;
+}
+
+.discover-cta-outline {
+    color: var(--color-primary);
+    border-color: rgba(128, 0, 32, 0.3);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .discover-hero-content h1 {
+        font-size: 2rem;
+    }
+
+    .discover-intro {
+        flex-direction: column;
+    }
+
+    .discover-atelier {
+        flex-direction: column;
+        padding: var(--spacing-md);
+    }
+}
