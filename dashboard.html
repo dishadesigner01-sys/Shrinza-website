@@ -21,7 +21,7 @@
                 <span class="brand-subtitle">Admin Portal</span>
             </div>
             <nav class="sidebar-nav">
-                <a href="#" class="nav-item active">
+                <a href="#" class="nav-item active" data-panel="orders">
                     <span class="icon">📦</span>
                     <span class="label">Orders</span>
                 </a>
@@ -29,11 +29,11 @@
                     <span class="icon">👗</span>
                     <span class="label">Products</span>
                 </a>
-                <a href="#" class="nav-item">
+                <a href="#" class="nav-item" data-panel="customers">
                     <span class="icon">👥</span>
                     <span class="label">Customers</span>
                 </a>
-                <a href="#" class="nav-item">
+                <a href="#" class="nav-item" data-panel="settings">
                     <span class="icon">⚙️</span>
                     <span class="label">Settings</span>
                 </a>
@@ -59,65 +59,151 @@
             </header>
 
             <div class="content-wrapper">
-                <div class="page-header">
-                    <h1>Order Management</h1>
-                    <div class="header-actions">
-                        <button class="btn btn-outline" id="refresh-orders-btn">⟳ Refresh</button>
-                    </div>
-                </div>
 
-                <!-- Stats Overview -->
-                <div class="stats-grid">
-                    <div class="stat-card">
-                        <h3>Total Orders</h3>
-                        <p class="stat-value" id="stat-total">0</p>
-                    </div>
-                    <div class="stat-card">
-                        <h3>Pending Dispatch</h3>
-                        <p class="stat-value text-burgundy" id="stat-pending">0</p>
-                    </div>
-                    <div class="stat-card">
-                        <h3>Dispatched</h3>
-                        <p class="stat-value" id="stat-dispatched">0</p>
-                    </div>
-                </div>
-
-                <!-- Orders Table -->
-                <div class="table-container">
-                    <div class="table-header">
-                        <h2>Recent Orders</h2>
-                        <div class="table-filters">
-                            <select id="status-filter">
-                                <option value="all">All Statuses</option>
-                                <option value="pending">Pending</option>
-                                <option value="dispatched">Dispatched</option>
-                                <option value="delivered">Delivered</option>
-                            </select>
+                <!-- Orders Panel -->
+                <div id="panel-orders" class="dashboard-panel">
+                    <div class="page-header">
+                        <h1>Order Management</h1>
+                        <div class="header-actions">
+                            <button class="btn btn-outline" id="refresh-orders-btn">⟳ Refresh</button>
                         </div>
                     </div>
-                    <table class="orders-table">
-                        <thead>
-                            <tr>
-                                <th>Order ID</th>
-                                <th>Date</th>
-                                <th>Customer</th>
-                                <th>Amount</th>
-                                <th>Status</th>
-                                <th>Actions</th>
-                            </tr>
-                        </thead>
-                        <tbody id="orders-tbody">
-                            <!-- Populated by JS -->
-                        </tbody>
-                    </table>
+
+                    <!-- Stats Overview -->
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <h3>Total Orders</h3>
+                            <p class="stat-value" id="stat-total">0</p>
+                        </div>
+                        <div class="stat-card">
+                            <h3>Pending Dispatch</h3>
+                            <p class="stat-value text-burgundy" id="stat-pending">0</p>
+                        </div>
+                        <div class="stat-card">
+                            <h3>Dispatched</h3>
+                            <p class="stat-value" id="stat-dispatched">0</p>
+                        </div>
+                        <div class="stat-card">
+                            <h3>Payments Collected</h3>
+                            <p class="stat-value" id="stat-collected">₹0</p>
+                        </div>
+                    </div>
+
+                    <!-- Orders Table -->
+                    <div class="table-container">
+                        <div class="table-header">
+                            <h2>Recent Orders</h2>
+                            <div class="table-filters">
+                                <select id="status-filter">
+                                    <option value="all">All Statuses</option>
+                                    <option value="pending">Pending</option>
+                                    <option value="dispatched">Dispatched</option>
+                                    <option value="delivered">Delivered</option>
+                                </select>
+                            </div>
+                        </div>
+                        <table class="orders-table">
+                            <thead>
+                                <tr>
+                                    <th>Order ID</th>
+                                    <th>Date</th>
+                                    <th>Customer</th>
+                                    <th>Amount</th>
+                                    <th>Payment</th>
+                                    <th>Status</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="orders-tbody">
+                                <!-- Populated by JS -->
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
+
+                <!-- Customers Panel -->
+                <div id="panel-customers" class="dashboard-panel hidden">
+                    <div class="page-header">
+                        <h1>Customers</h1>
+                    </div>
+                    <div class="table-container">
+                        <div class="table-header">
+                            <h2>Registered Customers</h2>
+                        </div>
+                        <table class="orders-table">
+                            <thead>
+                                <tr>
+                                    <th>Customer ID</th>
+                                    <th>Name</th>
+                                    <th>Mobile</th>
+                                    <th>Email</th>
+                                    <th>City</th>
+                                    <th>Orders</th>
+                                    <th>Joined</th>
+                                </tr>
+                            </thead>
+                            <tbody id="customers-tbody">
+                                <!-- Populated by JS -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Settings Panel: Logistics API Connection -->
+                <div id="panel-settings" class="dashboard-panel hidden">
+                    <div class="page-header">
+                        <h1>Logistics API Connection</h1>
+                        <span id="logistics-status-badge" class="badge badge-pending">Not Connected</span>
+                    </div>
+                    <div class="table-container settings-panel-card">
+                        <p class="settings-intro">Connect a logistics/courier provider's API here so orders pushed
+                            from the Orders tab are handed off automatically, and so tracking, payment status, and
+                            fund flow can be pulled back into this dashboard. Until a real provider is connected,
+                            "Push to Logistics" uses a local simulated dispatch.</p>
+                        <form id="logistics-settings-form" class="logistics-settings-form">
+                            <div class="form-group">
+                                <label for="logistics-provider">Provider Name</label>
+                                <input type="text" id="logistics-provider"
+                                    placeholder="e.g. Shiprocket, Delhivery, Shadowfax">
+                            </div>
+                            <div class="form-group">
+                                <label for="logistics-base-url">API Base URL</label>
+                                <input type="url" id="logistics-base-url"
+                                    placeholder="https://api.yourlogisticspartner.com">
+                            </div>
+                            <div class="form-group">
+                                <label for="logistics-api-key">API Key</label>
+                                <input type="password" id="logistics-api-key" placeholder="Enter API key">
+                            </div>
+                            <div class="form-actions" style="justify-content: flex-start; gap: 1rem;">
+                                <button type="button" id="logistics-test-btn" class="btn btn-outline">Test
+                                    Connection</button>
+                                <button type="submit" class="btn btn-primary">Save Settings</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
             </div>
         </main>
     </div>
 
+    <!-- Order Tracking Modal -->
+    <div id="tracking-modal" class="modal">
+        <div class="modal-content">
+            <button id="tracking-modal-close" class="close-btn">&times;</button>
+            <h2 class="text-burgundy" style="margin-bottom: 1rem;">Order Tracking</h2>
+            <div id="tracking-modal-body" class="tracking-modal-body">
+                <p>Loading...</p>
+            </div>
+        </div>
+    </div>
+    <div id="modal-overlay" class="modal-overlay"></div>
+
     <!-- Push to Logistics Notification Toast -->
     <div id="toast-container" class="toast-container"></div>
 
+    <script src="scripts/store.js"></script>
     <script src="scripts/dashboard.js"></script>
 </body>
 
