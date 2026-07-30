@@ -152,10 +152,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (checkoutBtn) {
         checkoutBtn.addEventListener('click', () => {
-            alert('Proceeding to payment gateway... Thank you for shopping with SHRINZA!');
-            cart = [];
-            saveCart();
-            toggleCart(false);
+            if (cart.length === 0) return;
+            const session = ShrinzaStore.getSession();
+            if (!session) {
+                openAuthModal('checkout');
+            } else {
+                openCheckoutModal();
+            }
         });
     }
 
@@ -167,6 +170,108 @@ document.addEventListener('DOMContentLoaded', () => {
             addToCart(id, 'M', 1);
         });
     });
+
+    // --- Favorites System ---
+    const favoritesDrawer = document.getElementById('favorites-drawer');
+    const favoritesOverlay = document.getElementById('favorites-overlay');
+    const favoritesToggle = document.getElementById('favorites-toggle-btn');
+    const favoritesClose = document.getElementById('favorites-close-btn');
+    const favoritesItemsWrapper = document.getElementById('favorites-items-container');
+    const favoritesBadge = document.getElementById('favorites-badge');
+
+    let favorites = JSON.parse(localStorage.getItem('shrinza_favorites')) || [];
+
+    function toggleFavoritesDrawer(open = true) {
+        if (open) {
+            favoritesDrawer.classList.add('open');
+            favoritesOverlay.classList.add('open');
+            document.body.style.overflow = 'hidden';
+            renderFavorites();
+        } else {
+            favoritesDrawer.classList.remove('open');
+            favoritesOverlay.classList.remove('open');
+            document.body.style.overflow = '';
+        }
+    }
+
+    if (favoritesToggle) favoritesToggle.addEventListener('click', () => toggleFavoritesDrawer(true));
+    if (favoritesClose) favoritesClose.addEventListener('click', () => toggleFavoritesDrawer(false));
+    if (favoritesOverlay) favoritesOverlay.addEventListener('click', () => toggleFavoritesDrawer(false));
+
+    function saveFavorites() {
+        localStorage.setItem('shrinza_favorites', JSON.stringify(favorites));
+        updateFavoritesUi();
+    }
+
+    function updateFavoritesUi() {
+        if (favoritesBadge) {
+            favoritesBadge.textContent = favorites.length;
+            favoritesBadge.style.display = favorites.length > 0 ? 'flex' : 'none';
+        }
+        document.querySelectorAll('.favorite-toggle-btn').forEach(btn => {
+            btn.classList.toggle('active', favorites.includes(btn.dataset.id));
+        });
+    }
+
+    function toggleFavorite(id) {
+        const index = favorites.indexOf(id);
+        if (index > -1) {
+            favorites.splice(index, 1);
+        } else {
+            favorites.push(id);
+        }
+        saveFavorites();
+        renderFavorites();
+    }
+
+    document.querySelectorAll('.favorite-toggle-btn').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            toggleFavorite(btn.dataset.id);
+        });
+    });
+
+    function renderFavorites() {
+        favoritesItemsWrapper.innerHTML = '';
+        if (favorites.length === 0) {
+            favoritesItemsWrapper.innerHTML = '<div class="cart-empty-message">You haven\'t saved any favorites yet.</div>';
+            return;
+        }
+
+        favorites.forEach(id => {
+            const product = PRODUCTS[id];
+            if (!product) return;
+            const itemEl = document.createElement('div');
+            itemEl.className = 'cart-item';
+            itemEl.innerHTML = `
+                <img src="${product.img}" alt="${product.name}" class="cart-item-image">
+                <div class="cart-item-details">
+                    <div>
+                        <h4 class="cart-item-name">${product.name}</h4>
+                        <p class="cart-item-meta">₹${product.price.toLocaleString('en-IN')}</p>
+                    </div>
+                    <div class="cart-item-pricing">
+                        <button class="btn btn-add-to-cart favorite-add-to-cart" data-id="${id}"
+                            style="width: auto; padding: 0.4rem 0.9rem; font-size: 0.7rem;">Add to Cart</button>
+                        <button class="cart-qty-btn remove-favorite" data-id="${id}"
+                            aria-label="Remove from Favorites">&times;</button>
+                    </div>
+                </div>
+            `;
+            favoritesItemsWrapper.appendChild(itemEl);
+        });
+
+        favoritesItemsWrapper.querySelectorAll('.remove-favorite').forEach(btn => {
+            btn.addEventListener('click', () => toggleFavorite(btn.dataset.id));
+        });
+
+        favoritesItemsWrapper.querySelectorAll('.favorite-add-to-cart').forEach(btn => {
+            btn.addEventListener('click', () => {
+                addToCart(btn.dataset.id, 'M', 1);
+                toggleFavoritesDrawer(false);
+            });
+        });
+    }
 
     // --- Quick View Modal ---
     const qvModal = document.getElementById('quick-view-modal');
@@ -199,11 +304,302 @@ document.addEventListener('DOMContentLoaded', () => {
         if (qvModal) qvModal.classList.remove('open');
         const bridalModal = document.getElementById('bridal-modal');
         if (bridalModal) bridalModal.classList.remove('open');
+        const authModalEl = document.getElementById('auth-modal');
+        if (authModalEl) authModalEl.classList.remove('open');
+        const checkoutModalEl = document.getElementById('checkout-modal');
+        if (checkoutModalEl) checkoutModalEl.classList.remove('open');
+        const searchModalEl = document.getElementById('search-modal');
+        if (searchModalEl) searchModalEl.classList.remove('open');
         if (modalOverlay) modalOverlay.classList.remove('open');
         if (!cartDrawer.classList.contains('open')) {
             document.body.style.overflow = '';
         }
     }
+
+    // --- Account / OTP Authentication ---
+    const accountToggleBtn = document.getElementById('account-toggle-btn');
+    const accountPanel = document.getElementById('account-panel');
+    const accountLabel = document.getElementById('account-label');
+    const accountPanelGuest = document.getElementById('account-panel-guest');
+    const accountPanelUser = document.getElementById('account-panel-user');
+    const accountCustomerName = document.getElementById('account-customer-name');
+    const accountCustomerId = document.getElementById('account-customer-id');
+    const accountCustomerMobile = document.getElementById('account-customer-mobile');
+    const accountOpenAuthBtn = document.getElementById('account-open-auth-btn');
+    const accountLogoutBtn = document.getElementById('account-logout-btn');
+
+    const authModal = document.getElementById('auth-modal');
+    const authModalTitle = document.getElementById('auth-modal-title');
+    const authModalClose = document.getElementById('auth-modal-close');
+
+    const authLoginForm = document.getElementById('auth-login-form');
+    const authLoginMobileInput = document.getElementById('auth-login-mobile');
+    const authGotoSignup = document.getElementById('auth-goto-signup');
+
+    const authSignupForm = document.getElementById('auth-signup-form');
+    const authSignupNotice = document.getElementById('auth-signup-notice');
+    const authSignupNameInput = document.getElementById('auth-signup-name');
+    const authSignupMobileInput = document.getElementById('auth-signup-mobile');
+    const authSignupEmailInput = document.getElementById('auth-signup-email');
+    const authSignupCityInput = document.getElementById('auth-signup-city');
+    const authGotoLogin = document.getElementById('auth-goto-login');
+
+    const authStepOtp = document.getElementById('auth-step-otp');
+    const authOtpMobileDisplay = document.getElementById('auth-otp-mobile-display');
+    const authOtpDemo = document.getElementById('auth-otp-demo');
+    const authOtpInput = document.getElementById('auth-otp-input');
+    const authOtpError = document.getElementById('auth-otp-error');
+    const authChangeNumberBtn = document.getElementById('auth-change-number');
+    const authResendOtp = document.getElementById('auth-resend-otp');
+
+    const checkoutModal = document.getElementById('checkout-modal');
+    const checkoutModalClose = document.getElementById('checkout-modal-close');
+    const checkoutDetailsForm = document.getElementById('checkout-details-form');
+
+    let authContext = 'login'; // 'login' or 'checkout' — what to do after a successful sign-in
+    let authMode = 'login'; // 'login' or 'signup' — which details form is currently active
+    let pendingAuthMobile = '';
+    let pendingAuthEmail = '';
+    let pendingAuthName = '';
+    let pendingAuthCity = '';
+
+    function renderAccountUi() {
+        const session = ShrinzaStore.getSession();
+        if (session) {
+            if (accountPanelGuest) accountPanelGuest.classList.add('hidden');
+            if (accountPanelUser) accountPanelUser.classList.remove('hidden');
+            if (accountCustomerName) accountCustomerName.textContent = session.name || session.mobile;
+            if (accountCustomerId) accountCustomerId.textContent = session.customerId;
+            if (accountCustomerMobile) accountCustomerMobile.textContent = session.mobile;
+            if (accountLabel) accountLabel.textContent = 'Account';
+        } else {
+            if (accountPanelGuest) accountPanelGuest.classList.remove('hidden');
+            if (accountPanelUser) accountPanelUser.classList.add('hidden');
+            if (accountLabel) accountLabel.textContent = 'Login';
+        }
+    }
+
+    function toggleAccountPanel(open) {
+        if (accountPanel) accountPanel.classList.toggle('open', open);
+    }
+
+    if (accountToggleBtn) {
+        accountToggleBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            toggleAccountPanel(!accountPanel.classList.contains('open'));
+        });
+    }
+
+    document.addEventListener('click', (e) => {
+        if (accountPanel && accountPanel.classList.contains('open') && !e.target.closest('.account-menu')) {
+            toggleAccountPanel(false);
+        }
+    });
+
+    if (accountOpenAuthBtn) {
+        accountOpenAuthBtn.addEventListener('click', () => {
+            toggleAccountPanel(false);
+            openAuthModal('login');
+        });
+    }
+
+    if (accountLogoutBtn) {
+        accountLogoutBtn.addEventListener('click', () => {
+            ShrinzaStore.clearSession();
+            renderAccountUi();
+            toggleAccountPanel(false);
+        });
+    }
+
+    function showLoginView() {
+        authMode = 'login';
+        if (authModalTitle) authModalTitle.textContent = 'Login';
+        if (authLoginForm) authLoginForm.classList.remove('hidden');
+        if (authSignupForm) authSignupForm.classList.add('hidden');
+        if (authStepOtp) authStepOtp.classList.add('hidden');
+        if (authSignupNotice) authSignupNotice.classList.add('hidden');
+    }
+
+    function showSignupView() {
+        authMode = 'signup';
+        if (authModalTitle) authModalTitle.textContent = 'Sign Up';
+        if (authLoginForm) authLoginForm.classList.add('hidden');
+        if (authSignupForm) authSignupForm.classList.remove('hidden');
+        if (authStepOtp) authStepOtp.classList.add('hidden');
+    }
+
+    // Auth modal always opens on Login, with a Sign Up link at the bottom.
+    function openAuthModal(context) {
+        authContext = context || 'login';
+        showLoginView();
+        if (authOtpError) authOtpError.classList.add('hidden');
+        if (authOtpInput) authOtpInput.value = '';
+        if (authModal) authModal.classList.add('open');
+        if (modalOverlay) modalOverlay.classList.add('open');
+        document.body.style.overflow = 'hidden';
+    }
+
+    if (authModalClose) authModalClose.addEventListener('click', closeAllModals);
+
+    if (authGotoSignup) {
+        authGotoSignup.addEventListener('click', (e) => {
+            e.preventDefault();
+            showSignupView();
+        });
+    }
+
+    if (authGotoLogin) {
+        authGotoLogin.addEventListener('click', (e) => {
+            e.preventDefault();
+            showLoginView();
+        });
+    }
+
+    function goToOtpStep(mobile) {
+        const otp = ShrinzaStore.generateOtp(mobile);
+        if (authOtpMobileDisplay) authOtpMobileDisplay.textContent = mobile;
+        if (authOtpDemo) authOtpDemo.textContent = 'Demo OTP (simulated, no SMS sent): ' + otp;
+        if (authOtpError) authOtpError.classList.add('hidden');
+        if (authOtpInput) authOtpInput.value = '';
+        if (authLoginForm) authLoginForm.classList.add('hidden');
+        if (authSignupForm) authSignupForm.classList.add('hidden');
+        if (authStepOtp) authStepOtp.classList.remove('hidden');
+        if (authOtpInput) authOtpInput.focus();
+    }
+
+    if (authLoginForm) {
+        authLoginForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            authMode = 'login';
+            pendingAuthMobile = authLoginMobileInput.value.trim();
+            pendingAuthEmail = '';
+            pendingAuthName = '';
+            pendingAuthCity = '';
+            goToOtpStep(pendingAuthMobile);
+        });
+    }
+
+    if (authSignupForm) {
+        authSignupForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            authMode = 'signup';
+            pendingAuthName = authSignupNameInput.value.trim();
+            pendingAuthMobile = authSignupMobileInput.value.trim();
+            pendingAuthEmail = authSignupEmailInput.value.trim();
+            pendingAuthCity = authSignupCityInput.value.trim();
+            goToOtpStep(pendingAuthMobile);
+        });
+    }
+
+    if (authChangeNumberBtn) {
+        authChangeNumberBtn.addEventListener('click', () => {
+            if (authMode === 'signup') {
+                showSignupView();
+            } else {
+                showLoginView();
+            }
+        });
+    }
+
+    if (authResendOtp) {
+        authResendOtp.addEventListener('click', (e) => {
+            e.preventDefault();
+            const otp = ShrinzaStore.generateOtp(pendingAuthMobile);
+            if (authOtpDemo) authOtpDemo.textContent = 'Demo OTP (simulated, no SMS sent): ' + otp;
+        });
+    }
+
+    if (authStepOtp) {
+        authStepOtp.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const result = ShrinzaStore.verifyOtp(pendingAuthMobile, authOtpInput.value.trim());
+            if (!result.ok) {
+                if (authOtpError) authOtpError.classList.remove('hidden');
+                return;
+            }
+
+            let customer;
+            if (authMode === 'login') {
+                customer = ShrinzaStore.findCustomerByMobile(pendingAuthMobile);
+                if (!customer) {
+                    // No account for this number yet — send them to sign up, mobile pre-filled.
+                    showSignupView();
+                    if (authSignupMobileInput) authSignupMobileInput.value = pendingAuthMobile;
+                    if (authSignupNotice) {
+                        authSignupNotice.textContent = 'No account found for that number — please complete sign up below.';
+                        authSignupNotice.classList.remove('hidden');
+                    }
+                    return;
+                }
+            } else {
+                customer = ShrinzaStore.upsertCustomer({
+                    name: pendingAuthName,
+                    mobile: pendingAuthMobile,
+                    email: pendingAuthEmail,
+                    city: pendingAuthCity
+                });
+            }
+
+            ShrinzaStore.setSession(customer);
+            renderAccountUi();
+
+            if (authContext === 'checkout') {
+                closeAllModals();
+                openCheckoutModal();
+            } else {
+                closeAllModals();
+            }
+        });
+    }
+
+    function openCheckoutModal() {
+        const session = ShrinzaStore.getSession();
+        const checkoutPhoneInput = document.getElementById('checkout-phone');
+        const checkoutNameInput = document.getElementById('checkout-name');
+        const checkoutCityInput = document.getElementById('checkout-city');
+        if (session) {
+            if (checkoutPhoneInput && !checkoutPhoneInput.value) checkoutPhoneInput.value = session.mobile;
+            if (checkoutNameInput && !checkoutNameInput.value) checkoutNameInput.value = session.name || '';
+            if (checkoutCityInput && !checkoutCityInput.value) checkoutCityInput.value = session.city || '';
+        }
+        toggleCart(false);
+        if (checkoutModal) checkoutModal.classList.add('open');
+        if (modalOverlay) modalOverlay.classList.add('open');
+        document.body.style.overflow = 'hidden';
+    }
+
+    if (checkoutModalClose) checkoutModalClose.addEventListener('click', closeAllModals);
+
+    if (checkoutDetailsForm) {
+        checkoutDetailsForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const session = ShrinzaStore.getSession();
+            if (!session) {
+                closeAllModals();
+                openAuthModal('checkout');
+                return;
+            }
+            const subtotal = cart.reduce((acc, item) => acc + item.price * item.quantity, 0);
+            const pendingOrder = {
+                customerId: session.customerId,
+                customerMobile: session.mobile,
+                customerEmail: session.email,
+                items: cart.map(item => ({ name: item.name, size: item.size, quantity: item.quantity, price: item.price, img: item.img })),
+                amount: subtotal,
+                shipping: {
+                    name: document.getElementById('checkout-name').value.trim(),
+                    phone: document.getElementById('checkout-phone').value.trim(),
+                    address: document.getElementById('checkout-address').value.trim(),
+                    city: document.getElementById('checkout-city').value.trim(),
+                    pincode: document.getElementById('checkout-pincode').value.trim()
+                }
+            };
+            ShrinzaStore.setPendingOrder(pendingOrder);
+            window.location.href = 'payment.html';
+        });
+    }
+
+    renderAccountUi();
 
     document.querySelectorAll('.btn-quick-view').forEach(btn => {
         btn.addEventListener('click', (e) => {
@@ -244,6 +640,65 @@ document.addEventListener('DOMContentLoaded', () => {
                     card.style.display = 'none';
                 }
             });
+        });
+    });
+
+    // --- Search ---
+    const searchToggleBtn = document.getElementById('search-toggle-btn');
+    const searchModal = document.getElementById('search-modal');
+    const searchModalClose = document.getElementById('search-modal-close');
+    const searchForm = document.getElementById('search-form');
+    const searchInput = document.getElementById('search-input');
+    const searchChips = document.querySelectorAll('.search-chip');
+    const searchNoResults = document.getElementById('search-no-results');
+
+    function openSearchModal() {
+        if (searchModal) searchModal.classList.add('open');
+        if (modalOverlay) modalOverlay.classList.add('open');
+        document.body.style.overflow = 'hidden';
+        if (searchInput) setTimeout(() => searchInput.focus(), 100);
+    }
+
+    if (searchToggleBtn) searchToggleBtn.addEventListener('click', openSearchModal);
+    if (searchModalClose) searchModalClose.addEventListener('click', closeAllModals);
+
+    function runProductSearch(query) {
+        const term = query.trim().toLowerCase();
+        if (!term) return;
+
+        filterBtns.forEach(b => b.classList.remove('active'));
+        const allBtn = document.querySelector('.filter-btn[data-filter="all"]');
+        if (allBtn) allBtn.classList.add('active');
+
+        let matchCount = 0;
+        productCards.forEach(card => {
+            const title = card.querySelector('.product-title');
+            const titleText = title ? title.textContent.toLowerCase() : '';
+            const category = (card.dataset.category || '').toLowerCase();
+            const isMatch = titleText.includes(term) || category.includes(term);
+            card.style.display = isMatch ? 'block' : 'none';
+            if (isMatch) matchCount++;
+        });
+
+        if (searchNoResults) searchNoResults.classList.toggle('hidden', matchCount > 0);
+
+        closeAllModals();
+        const featuredSection = document.getElementById('featured');
+        if (featuredSection) featuredSection.scrollIntoView({ behavior: 'smooth' });
+    }
+
+    if (searchForm) {
+        searchForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            runProductSearch(searchInput.value);
+        });
+    }
+
+    searchChips.forEach(chip => {
+        chip.addEventListener('click', () => {
+            const query = chip.dataset.query;
+            if (searchInput) searchInput.value = query;
+            runProductSearch(query);
         });
     });
 
@@ -487,12 +942,12 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // --- Splash Newsletter Signup ---
-    const splashNewsletterForm = document.getElementById('splash-newsletter-form');
-    if (splashNewsletterForm) {
-        splashNewsletterForm.addEventListener('submit', (e) => {
+    // --- Footer Newsletter Signup ---
+    const footerNewsletterForm = document.getElementById('splash-newsletter-form');
+    if (footerNewsletterForm) {
+        footerNewsletterForm.addEventListener('submit', (e) => {
             e.preventDefault();
-            splashNewsletterForm.classList.add('hidden');
+            footerNewsletterForm.classList.add('hidden');
             const successMsg = document.getElementById('splash-newsletter-success');
             if (successMsg) successMsg.classList.remove('hidden');
         });
@@ -500,6 +955,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- Onload Initialize ---
     updateCartUi();
+    updateFavoritesUi();
     applyLogoChoice('option-2');
 
     const splashScreen = document.getElementById('splash-screen');
