@@ -21,20 +21,11 @@
             <p>Haute Couture</p>
             <span class="splash-line"></span>
         </div>
-
-        <aside class="splash-newsletter" aria-label="Newsletter signup">
-            <h4>Shrinza Newsletter</h4>
-            <p>Sign up for our newsletter to receive the latest updates, exclusive launches, and behind-the-scenes stories—straight to your inbox.</p>
-            <form id="splash-newsletter-form" class="splash-newsletter-form">
-                <input type="email" id="splash-newsletter-email" placeholder="Enter your email" required>
-                <button type="submit" class="btn btn-gold">Subscribe</button>
-            </form>
-            <p id="splash-newsletter-success" class="splash-newsletter-success hidden">Thank you for subscribing!</p>
-        </aside>
     </div>
 
     <!-- Navbar -->
     <nav class="navbar">
+        <div class="navbar-top">
         <div class="logo-wrapper">
             <div id="navbar-logo-svg-holder">
                 <svg class="logo-symbol" viewBox="0 0 200 50" aria-label="SHRINZA Logo">
@@ -63,13 +54,46 @@
                 <span class="logo-tagline">Haute Couture</span>
             </div>
         </div>
-        <div class="nav-links">
-            <a href="#hero">Home</a>
-            <a href="#featured">Collection</a>
-            <a href="#bridal">Bridal Studio</a>
-            <a href="#footer">Contact</a>
-        </div>
         <div class="nav-actions" style="display: flex; align-items: center; gap: 1.5rem;">
+            <button id="search-toggle-btn" class="nav-icon-btn" aria-label="Search">
+                <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="11" cy="11" r="8"></circle>
+                    <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                </svg>
+            </button>
+            <div class="account-menu">
+                <button id="account-toggle-btn" class="nav-icon-btn" aria-label="Account">
+                    <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                        <circle cx="12" cy="7" r="4"></circle>
+                    </svg>
+                </button>
+                <div id="account-panel" class="account-panel">
+                    <div id="account-panel-guest" class="account-panel-content">
+                        <p>Sign in to track your orders.</p>
+                        <button id="account-open-auth-btn" class="btn btn-primary btn-block">Login / Sign Up</button>
+                    </div>
+                    <div id="account-panel-user" class="account-panel-content hidden">
+                        <p class="account-panel-name" id="account-customer-name">—</p>
+                        <p class="account-panel-id">Customer ID<br><strong id="account-customer-id">—</strong></p>
+                        <p class="account-panel-mobile" id="account-customer-mobile">—</p>
+                        <a href="orders.html" class="btn btn-primary btn-block account-panel-orders-link">My
+                            Orders</a>
+                        <button id="account-logout-btn" class="btn btn-outline btn-block">Logout</button>
+                    </div>
+                </div>
+            </div>
+            <button id="favorites-toggle-btn" class="nav-icon-btn" aria-label="Open Favorites">
+                <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <path
+                        d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z">
+                    </path>
+                </svg>
+                <span id="favorites-badge" class="cart-badge">0</span>
+            </button>
             <button id="cart-toggle-btn" class="nav-icon-btn" aria-label="Open Cart">
                 <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2"
                     stroke-linecap="round" stroke-linejoin="round">
@@ -79,7 +103,16 @@
                 </svg>
                 <span id="cart-badge" class="cart-badge">0</span>
             </button>
-            <a href="#featured" class="btn btn-primary" style="padding: 0.5rem 1rem; font-size: 0.8rem;">Shop Now</a>
+        </div>
+        </div>
+        <div class="nav-links">
+            <a href="#hero">Home</a>
+            <a href="#featured">SH Couture</a>
+            <a href="#featured">New Arrival</a>
+            <a href="#featured">Exclusive Offer</a>
+            <a href="#bridal">Bridal Studio</a>
+            <a href="discover.html">Discover</a>
+            <a href="#footer">Contact</a>
         </div>
     </nav>
 
@@ -117,6 +150,14 @@
             <div class="product-card" data-category="indo-western" data-id="1">
                 <div class="product-image-wrapper">
                     <img src="assets/product1.png" alt="Velvet Indo-Western Gown" class="product-image">
+                    <button class="favorite-toggle-btn" data-id="1" aria-label="Add to Favorites">
+                        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path
+                                d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z">
+                            </path>
+                        </svg>
+                    </button>
                     <div class="product-overlay">
                         <button class="btn btn-quick-view" data-id="1">Quick View</button>
                         <button class="btn btn-add-to-cart" data-id="1">Add to Cart</button>
@@ -131,6 +172,14 @@
             <div class="product-card" data-category="indo-western" data-id="2">
                 <div class="product-image-wrapper">
                     <img src="assets/product2.png" alt="Embroidered Crop Top Skirt" class="product-image">
+                    <button class="favorite-toggle-btn" data-id="2" aria-label="Add to Favorites">
+                        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path
+                                d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z">
+                            </path>
+                        </svg>
+                    </button>
                     <div class="product-overlay">
                         <button class="btn btn-quick-view" data-id="2">Quick View</button>
                         <button class="btn btn-add-to-cart" data-id="2">Add to Cart</button>
@@ -145,6 +194,14 @@
             <div class="product-card" data-category="indo-western" data-id="3">
                 <div class="product-image-wrapper">
                     <img src="assets/product3.png" alt="Fusion Saree Drape" class="product-image">
+                    <button class="favorite-toggle-btn" data-id="3" aria-label="Add to Favorites">
+                        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path
+                                d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z">
+                            </path>
+                        </svg>
+                    </button>
                     <div class="product-overlay">
                         <button class="btn btn-quick-view" data-id="3">Quick View</button>
                         <button class="btn btn-add-to-cart" data-id="3">Add to Cart</button>
@@ -159,6 +216,14 @@
             <div class="product-card" data-category="bridal" data-id="4">
                 <div class="product-image-wrapper">
                     <img src="assets/bridal-specialty.png" alt="Custom Zardosi Lehenga" class="product-image">
+                    <button class="favorite-toggle-btn" data-id="4" aria-label="Add to Favorites">
+                        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path
+                                d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z">
+                            </path>
+                        </svg>
+                    </button>
                     <div class="product-overlay">
                         <button class="btn btn-quick-view" data-id="4">Quick View</button>
                         <button class="btn btn-add-to-cart" data-id="4">Add to Cart</button>
@@ -196,47 +261,60 @@
 
     <!-- Marketing / Footer -->
     <footer id="footer">
-        <div class="container">
-            <div class="logo-wrapper logo-footer">
-                <div id="footer-logo-svg-holder">
-                    <svg class="logo-symbol" viewBox="0 0 200 50" aria-label="SHRINZA Logo">
-                        <defs>
-                            <linearGradient id="logoGoldFooter" x1="0%" y1="0%" x2="100%" y2="100%">
-                                <stop offset="0%" stop-color="#8E6E34" />
-                                <stop offset="30%" stop-color="#DAA520" />
-                                <stop offset="70%" stop-color="#F5D061" />
-                                <stop offset="100%" stop-color="#8E6E34" />
-                            </linearGradient>
-                        </defs>
-                        <path class="logo-thread"
-                            d="M12 36 C 22 34, 30 45, 44 26 C 54 12, 66 35, 78 18 C 82 11, 82 11, 82 11 C 82 11, 92 5, 100 15 C 108 25, 120 18, 128 32 C 136 46, 146 35, 158 38 C 168 40, 178 30, 188 35"
-                            fill="none" stroke="url(#logoGoldFooter)" stroke-width="1.8" stroke-linecap="round"
-                            opacity="0.85" />
-                        <text x="76" y="32" font-family="'Bodoni Moda', serif" font-size="24" font-weight="600"
-                            fill="url(#logoGoldFooter)" letter-spacing="3.2" text-anchor="end">SHR</text>
-                        <path class="logo-needle"
-                            d="M 80.5 13.5 C 80.5 8, 83.5 8, 83.5 13.5 L 82.5 39 L 82.0 45 L 81.5 39 Z"
-                            fill="url(#logoGoldFooter)" />
-                        <circle cx="82" cy="13" r="0.75" fill="#fff" />
-                        <text x="88" y="32" font-family="'Bodoni Moda', serif" font-size="24" font-weight="600"
-                            fill="url(#logoGoldFooter)" letter-spacing="3.2">NZA</text>
-                    </svg>
+        <div class="container footer-grid">
+            <div class="footer-brand">
+                <div class="logo-wrapper logo-footer">
+                    <div id="footer-logo-svg-holder">
+                        <svg class="logo-symbol" viewBox="0 0 200 50" aria-label="SHRINZA Logo">
+                            <defs>
+                                <linearGradient id="logoGoldFooter" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <stop offset="0%" stop-color="#8E6E34" />
+                                    <stop offset="30%" stop-color="#DAA520" />
+                                    <stop offset="70%" stop-color="#F5D061" />
+                                    <stop offset="100%" stop-color="#8E6E34" />
+                                </linearGradient>
+                            </defs>
+                            <path class="logo-thread"
+                                d="M12 36 C 22 34, 30 45, 44 26 C 54 12, 66 35, 78 18 C 82 11, 82 11, 82 11 C 82 11, 92 5, 100 15 C 108 25, 120 18, 128 32 C 136 46, 146 35, 158 38 C 168 40, 178 30, 188 35"
+                                fill="none" stroke="url(#logoGoldFooter)" stroke-width="1.8" stroke-linecap="round"
+                                opacity="0.85" />
+                            <text x="76" y="32" font-family="'Bodoni Moda', serif" font-size="24" font-weight="600"
+                                fill="url(#logoGoldFooter)" letter-spacing="3.2" text-anchor="end">SHR</text>
+                            <path class="logo-needle"
+                                d="M 80.5 13.5 C 80.5 8, 83.5 8, 83.5 13.5 L 82.5 39 L 82.0 45 L 81.5 39 Z"
+                                fill="url(#logoGoldFooter)" />
+                            <circle cx="82" cy="13" r="0.75" fill="#fff" />
+                            <text x="88" y="32" font-family="'Bodoni Moda', serif" font-size="24" font-weight="600"
+                                fill="url(#logoGoldFooter)" letter-spacing="3.2">NZA</text>
+                        </svg>
+                    </div>
+                    <div class="logo-text">
+                        <span class="logo-tagline">Haute Couture</span>
+                    </div>
                 </div>
-                <div class="logo-text">
-                    <span class="logo-tagline">Haute Couture</span>
+                <p class="footer-tagline">Where Tradition Meets Modernity</p>
+
+                <div class="social-links">
+                    <a href="#">Instagram</a>
+                    <a href="#">Facebook</a>
+                    <a href="#">Pinterest</a>
                 </div>
             </div>
-            <p>Where Tradition Meets Modernity</p>
 
-            <div class="social-links">
-                <a href="#">Instagram</a>
-                <a href="#">Facebook</a>
-                <a href="#">Pinterest</a>
+            <div class="footer-newsletter">
+                <h4>Shrinza Newsletter</h4>
+                <p>Sign up for our newsletter to receive the latest updates, exclusive launches, and
+                    behind-the-scenes stories—straight to your inbox.</p>
+                <form id="splash-newsletter-form" class="footer-newsletter-form">
+                    <input type="email" id="splash-newsletter-email" placeholder="Enter your email" required>
+                    <button type="submit" class="btn btn-gold">Subscribe</button>
+                </form>
+                <p id="splash-newsletter-success" class="footer-newsletter-success hidden">Thank you for
+                    subscribing!</p>
             </div>
-
-            <p style="font-size: 0.9rem; color: #888; margin-top: 2rem;">&copy; 2024 SHRINZA Apparel. All rights
-                reserved.</p>
         </div>
+
+        <p class="footer-copyright">&copy; 2024 SHRINZA Apparel. All rights reserved.</p>
     </footer>
 
     <!-- Shopping Cart Drawer -->
@@ -259,6 +337,19 @@
         </div>
     </div>
     <div id="cart-overlay" class="drawer-overlay"></div>
+
+    <!-- Favorites Drawer -->
+    <div id="favorites-drawer" class="cart-drawer">
+        <div class="cart-drawer-header">
+            <h3>Your Favorites</h3>
+            <button id="favorites-close-btn" class="close-btn" aria-label="Close Favorites">&times;</button>
+        </div>
+        <div id="favorites-items-container" class="cart-items-container">
+            <!-- Dynamic Favorites Items -->
+            <div class="cart-empty-message">You haven't saved any favorites yet.</div>
+        </div>
+    </div>
+    <div id="favorites-overlay" class="drawer-overlay"></div>
 
     <!-- Product Quick View Modal -->
     <div id="quick-view-modal" class="modal">
@@ -389,9 +480,154 @@
         </div>
     </div>
 
+    <!-- Auth / OTP Modal -->
+    <div id="auth-modal" class="modal">
+        <div class="modal-content">
+            <button id="auth-modal-close" class="close-btn">&times;</button>
+            <div class="text-center" style="margin-bottom: 1.5rem;">
+                <h4 class="text-gold"
+                    style="letter-spacing: 2px; text-transform: uppercase; font-size: 0.8rem; margin-bottom: 0.5rem;">
+                    SHRINZA Account</h4>
+                <h2 class="text-burgundy" id="auth-modal-title">Login</h2>
+            </div>
+
+            <!-- Login: Mobile + OTP only -->
+            <form id="auth-login-form" class="auth-form">
+                <div class="form-group">
+                    <label for="auth-login-mobile">Mobile Number</label>
+                    <input type="tel" id="auth-login-mobile" placeholder="10-digit mobile number" pattern="[0-9]{10}"
+                        maxlength="10" required>
+                </div>
+                <div class="form-actions" style="justify-content: flex-end;">
+                    <button type="submit" class="btn btn-primary">Send OTP</button>
+                </div>
+                <p class="auth-switch">New to SHRINZA? <a href="#" id="auth-goto-signup">Sign Up</a></p>
+            </form>
+
+            <!-- Sign Up: Name, Mobile, Email, City -->
+            <form id="auth-signup-form" class="auth-form hidden">
+                <p id="auth-signup-notice" class="auth-otp-error hidden"></p>
+                <div class="form-group">
+                    <label for="auth-signup-name">Full Name</label>
+                    <input type="text" id="auth-signup-name" placeholder="Enter your name" required>
+                </div>
+                <div class="form-group">
+                    <label for="auth-signup-mobile">Mobile Number</label>
+                    <input type="tel" id="auth-signup-mobile" placeholder="10-digit mobile number"
+                        pattern="[0-9]{10}" maxlength="10" required>
+                </div>
+                <div class="form-group">
+                    <label for="auth-signup-email">Email Address</label>
+                    <input type="email" id="auth-signup-email" placeholder="Enter email" required>
+                </div>
+                <div class="form-group">
+                    <label for="auth-signup-city">City</label>
+                    <input type="text" id="auth-signup-city" placeholder="Enter your city" required>
+                </div>
+                <div class="form-actions" style="justify-content: flex-end;">
+                    <button type="submit" class="btn btn-primary">Send OTP</button>
+                </div>
+                <p class="auth-switch">Already have an account? <a href="#" id="auth-goto-login">Login</a></p>
+            </form>
+
+            <!-- Shared OTP step -->
+            <form id="auth-step-otp" class="auth-form hidden">
+                <p class="auth-otp-hint">We've sent a 4-digit code to <strong id="auth-otp-mobile-display"></strong>.
+                </p>
+                <p id="auth-otp-demo" class="auth-otp-demo"></p>
+                <div class="form-group">
+                    <label for="auth-otp-input">Enter OTP</label>
+                    <input type="text" id="auth-otp-input" placeholder="4-digit code" maxlength="4"
+                        inputmode="numeric" required>
+                </div>
+                <p id="auth-otp-error" class="auth-otp-error hidden">Incorrect OTP. Please try again.</p>
+                <div class="form-actions">
+                    <button type="button" id="auth-change-number" class="btn btn-outline"
+                        style="color: var(--color-primary); border-color: rgba(128, 0, 32, 0.3);">Back</button>
+                    <button type="submit" class="btn btn-primary">Verify &amp; Continue</button>
+                </div>
+                <p class="auth-resend">Didn't get it? <a href="#" id="auth-resend-otp">Resend OTP</a></p>
+            </form>
+        </div>
+    </div>
+
+    <!-- Checkout Delivery Details Modal -->
+    <div id="checkout-modal" class="modal">
+        <div class="modal-content">
+            <button id="checkout-modal-close" class="close-btn">&times;</button>
+            <div class="text-center" style="margin-bottom: 1.5rem;">
+                <h4 class="text-gold"
+                    style="letter-spacing: 2px; text-transform: uppercase; font-size: 0.8rem; margin-bottom: 0.5rem;">
+                    Delivery Details</h4>
+                <h2 class="text-burgundy">Where should we deliver this?</h2>
+            </div>
+            <form id="checkout-details-form">
+                <div class="form-group">
+                    <label for="checkout-name">Full Name</label>
+                    <input type="text" id="checkout-name" required>
+                </div>
+                <div class="form-group">
+                    <label for="checkout-phone">Phone Number</label>
+                    <input type="tel" id="checkout-phone" required>
+                </div>
+                <div class="form-group">
+                    <label for="checkout-address">Address</label>
+                    <input type="text" id="checkout-address" placeholder="House no., street, locality" required>
+                </div>
+                <div class="form-group" style="display: flex; gap: 1rem;">
+                    <div style="flex: 1;">
+                        <label for="checkout-city">City</label>
+                        <input type="text" id="checkout-city" required>
+                    </div>
+                    <div style="flex: 1;">
+                        <label for="checkout-pincode">Pincode</label>
+                        <input type="text" id="checkout-pincode" pattern="[0-9]{6}" maxlength="6" required>
+                    </div>
+                </div>
+                <div class="form-actions">
+                    <button type="submit" class="btn btn-gold">Continue to Payment</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Search Modal -->
+    <div id="search-modal" class="modal search-modal">
+        <div class="modal-content">
+            <button id="search-modal-close" class="close-btn">&times;</button>
+            <div class="text-center" style="margin-bottom: 1.5rem;">
+                <h4 class="text-gold"
+                    style="letter-spacing: 2px; text-transform: uppercase; font-size: 0.8rem; margin-bottom: 0.5rem;">
+                    Search SHRINZA</h4>
+                <h2 class="text-burgundy">What are you looking for?</h2>
+            </div>
+            <form id="search-form">
+                <div class="form-group">
+                    <input type="text" id="search-input" placeholder="Search for gowns, lehengas, sarees..."
+                        autocomplete="off" required>
+                </div>
+                <div class="form-actions" style="justify-content: center;">
+                    <button type="submit" class="btn btn-primary">Search</button>
+                </div>
+            </form>
+            <div class="search-suggestions">
+                <p class="search-suggestions-label">Popular Searches</p>
+                <div class="search-suggestions-chips">
+                    <button type="button" class="search-chip" data-query="gown">Gowns</button>
+                    <button type="button" class="search-chip" data-query="lehenga">Lehengas</button>
+                    <button type="button" class="search-chip" data-query="saree">Sarees</button>
+                    <button type="button" class="search-chip" data-query="bridal">Bridal</button>
+                </div>
+            </div>
+            <p id="search-no-results" class="search-no-results hidden">No products matched your search. Try
+                "Gowns", "Lehengas", or "Sarees".</p>
+        </div>
+    </div>
+
     <!-- Modal Base Overlay -->
     <div id="modal-overlay" class="modal-overlay"></div>
 
+    <script src="scripts/store.js"></script>
     <script src="scripts/main.js"></script>
 </body>
 
