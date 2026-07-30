@@ -487,6 +487,17 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
+    // --- Splash Newsletter Signup ---
+    const splashNewsletterForm = document.getElementById('splash-newsletter-form');
+    if (splashNewsletterForm) {
+        splashNewsletterForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            splashNewsletterForm.classList.add('hidden');
+            const successMsg = document.getElementById('splash-newsletter-success');
+            if (successMsg) successMsg.classList.remove('hidden');
+        });
+    }
+
     // --- Onload Initialize ---
     updateCartUi();
     applyLogoChoice('option-2');
