@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SHRINZA | Secure Checkout</title>
+    <link rel="stylesheet" href="styles/style.css">
+    <link rel="stylesheet" href="styles/payment.css">
+</head>
+
+<body class="payment-body">
+
+    <header class="payment-header">
+        <a href="index.html" class="payment-logo">SHRINZA</a>
+        <span class="payment-header-note">Secure Checkout (Demo)</span>
+    </header>
+
+    <main class="payment-main">
+
+        <div id="payment-empty-state" class="payment-empty hidden">
+            <h2>No active order found</h2>
+            <p>Looks like there's no pending order to pay for.</p>
+            <a href="index.html" class="btn btn-primary">Back to Store</a>
+        </div>
+
+        <div id="payment-flow" class="payment-flow">
+            <section class="payment-summary-card">
+                <h3>Order Summary</h3>
+                <div id="payment-items" class="payment-items"></div>
+                <div class="payment-summary-row">
+                    <span>Subtotal</span>
+                    <span id="payment-subtotal">₹0</span>
+                </div>
+                <div class="payment-summary-row">
+                    <span>Shipping</span>
+                    <span>Free</span>
+                </div>
+                <div class="payment-summary-row payment-summary-total">
+                    <span>Total</span>
+                    <span id="payment-total">₹0</span>
+                </div>
+                <div class="payment-shipping-info">
+                    <h4>Deliver To</h4>
+                    <p id="payment-shipping-name"></p>
+                    <p id="payment-shipping-address"></p>
+                    <p id="payment-shipping-phone"></p>
+                </div>
+            </section>
+
+            <section class="payment-form-card">
+                <h3>Payment Details <span class="payment-dummy-badge">Dummy / Demo Gateway</span></h3>
+                <form id="payment-form">
+                    <div class="form-group">
+                        <label for="pay-card-name">Name on Card</label>
+                        <input type="text" id="pay-card-name" placeholder="Enter cardholder name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="pay-card-number">Card Number</label>
+                        <input type="text" id="pay-card-number" placeholder="4242 4242 4242 4242" maxlength="19"
+                            required>
+                    </div>
+                    <div class="form-group" style="display: flex; gap: 1rem;">
+                        <div style="flex: 1;">
+                            <label for="pay-card-expiry">Expiry (MM/YY)</label>
+                            <input type="text" id="pay-card-expiry" placeholder="MM/YY" maxlength="5" required>
+                        </div>
+                        <div style="flex: 1;">
+                            <label for="pay-card-cvv">CVV</label>
+                            <input type="text" id="pay-card-cvv" placeholder="123" maxlength="3" required>
+                        </div>
+                    </div>
+                    <button type="submit" id="payment-submit-btn" class="btn btn-gold btn-block">Pay <span
+                            id="payment-btn-amount">₹0</span></button>
+                    <p class="payment-disclaimer">This is a simulated payment for demo purposes. No real charge will
+                        be made.</p>
+                </form>
+            </section>
+        </div>
+
+        <div id="payment-success" class="payment-success hidden">
+            <div class="success-icon">&#10003;</div>
+            <h2>Payment Successful</h2>
+            <p>Your order has been placed.</p>
+            <div class="payment-success-details">
+                <p>Order ID: <strong id="success-order-id"></strong></p>
+                <p>Amount Paid: <strong id="success-amount-paid"></strong></p>
+            </div>
+            <p class="payment-success-note">Our team will process and dispatch your order shortly.</p>
+            <a href="index.html" class="btn btn-primary">Back to Store</a>
+        </div>
+
+    </main>
+
+    <script src="scripts/store.js"></script>
+    <script src="scripts/payment.js"></script>
+</body>
+
+</html>
