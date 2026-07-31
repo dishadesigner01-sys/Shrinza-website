@@ -258,6 +258,50 @@ img {
     aspect-ratio: 4 / 1;
 }
 
+.splash-logo-svg {
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+
+/* Needle appears first... */
+.splash-logo-needle-group {
+    opacity: 0;
+    transform: scale(0.85);
+    transform-origin: 50% 50%;
+    animation: splash-needle-reveal 0.8s ease-out 0.2s forwards;
+}
+
+/* ...then the SHRINZA wordmark transitions in */
+.splash-logo-text-group {
+    opacity: 0;
+    animation: splash-text-reveal 0.7s ease-out 1s forwards;
+}
+
+@keyframes splash-needle-reveal {
+    from {
+        opacity: 0;
+        transform: scale(0.85);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes splash-text-reveal {
+    from {
+        opacity: 0;
+        transform: translateX(-6px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
 .splash-content p {
     color: var(--color-cream);
     font-family: var(--font-brand);
