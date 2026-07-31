@@ -264,29 +264,34 @@ img {
     display: block;
 }
 
-/* Needle appears first... */
+/* Needle appears first, centered on screen... */
 .splash-logo-needle-group {
     opacity: 0;
-    transform: scale(0.85);
+    transform: translateX(203px) scale(0.85);
     transform-origin: 50% 50%;
-    animation: splash-needle-reveal 0.8s ease-out 0.2s forwards;
+    animation: splash-needle-reveal 1.5s ease-out 0.2s forwards;
 }
 
-/* ...then the SHRINZA wordmark transitions in */
+/* ...then the SHRINZA wordmark transitions in as the needle shifts left to make room */
 .splash-logo-text-group {
     opacity: 0;
     animation: splash-text-reveal 0.7s ease-out 1s forwards;
 }
 
 @keyframes splash-needle-reveal {
-    from {
+    0% {
         opacity: 0;
-        transform: scale(0.85);
+        transform: translateX(203px) scale(0.85);
     }
 
-    to {
+    53% {
         opacity: 1;
-        transform: scale(1);
+        transform: translateX(203px) scale(1);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateX(0) scale(1);
     }
 }
 
