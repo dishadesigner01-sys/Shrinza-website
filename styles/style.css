@@ -253,7 +253,7 @@ img {
 }
 
 .splash-logo {
-    width: clamp(320px, 42vw, 680px);
+    width: clamp(360px, 48vw, 760px);
     height: auto;
     aspect-ratio: 4 / 1;
 }
@@ -1531,8 +1531,8 @@ footer {
 }
 
 #footer-logo-svg-holder {
-    width: 220px;
-    height: 55px;
+    width: 300px;
+    height: 75px;
     display: block;
 }
 
