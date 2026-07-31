@@ -812,7 +812,7 @@ document.addEventListener('DOMContentLoaded', () => {
             <svg class="logo-symbol" viewBox="0 0 200 50" aria-label="SHRINZA Logo">
                 <defs>
                     <linearGradient id="logoGold" x1="0%" y1="0%" x2="100%" y2="100%">
-                        <stop offset="0%" stop-color="#8E6E34" /><stop offset="30%" stop-color="#DAA520" /><stop offset="70%" stop-color="#F5D061" /><stop offset="100%" stop-color="#8E6E34" />
+                        <stop offset="0%" stop-color="#5A0016" /><stop offset="30%" stop-color="#800020" /><stop offset="70%" stop-color="#C2698A" /><stop offset="100%" stop-color="#5A0016" />
                     </linearGradient>
                 </defs>
                 <path class="logo-thread" d="M12 36 C 22 34, 30 45, 44 26 C 54 12, 66 35, 78 18 C 82 11, 82 11, 82 11 C 82 11, 92 5, 100 15 C 108 25, 120 18, 128 32 C 136 46, 146 35, 158 38 C 168 40, 178 30, 188 35" fill="none" stroke="url(#logoGold)" stroke-width="1.8" stroke-linecap="round" opacity="0.85" />
@@ -830,7 +830,7 @@ document.addEventListener('DOMContentLoaded', () => {
             <svg class="logo-symbol option-fashion-crest" viewBox="0 0 240 50" aria-label="SHRINZA Fashion Atelier Monogram">
                 <defs>
                     <linearGradient id="logoGold" x1="0%" y1="0%" x2="100%" y2="100%">
-                        <stop offset="0%" stop-color="#8E6E34" /><stop offset="30%" stop-color="#DAA520" /><stop offset="70%" stop-color="#F5D061" /><stop offset="100%" stop-color="#8E6E34" />
+                        <stop offset="0%" stop-color="#5A0016" /><stop offset="30%" stop-color="#800020" /><stop offset="70%" stop-color="#C2698A" /><stop offset="100%" stop-color="#5A0016" />
                     </linearGradient>
                 </defs>
                 <g transform="translate(5, 0)" display="none">
@@ -865,7 +865,7 @@ document.addEventListener('DOMContentLoaded', () => {
             <svg class="logo-symbol option-calligraphic" viewBox="0 0 240 50" aria-label="SHRINZA Monogram Logo">
                 <defs>
                     <linearGradient id="logoGold" x1="0%" y1="0%" x2="100%" y2="100%">
-                        <stop offset="0%" stop-color="#8E6E34" /><stop offset="30%" stop-color="#DAA520" /><stop offset="70%" stop-color="#F5D061" /><stop offset="100%" stop-color="#8E6E34" />
+                        <stop offset="0%" stop-color="#5A0016" /><stop offset="30%" stop-color="#800020" /><stop offset="70%" stop-color="#C2698A" /><stop offset="100%" stop-color="#5A0016" />
                     </linearGradient>
                 </defs>
                 <path class="logo-needle" d="M 28 5 L 23 45 C 22.8 47 24.2 47 24.5 45 L 29.5 5 Z M27.8 9 C 27.8 7 29.2 7 29.2 9 C 29.2 11 27.8 11 27.8 9 Z" fill="url(#logoGold)" fill-rule="evenodd" />
@@ -879,7 +879,7 @@ document.addEventListener('DOMContentLoaded', () => {
             <svg class="logo-symbol option-minimalist" viewBox="0 0 240 50" aria-label="SHRINZA Minimalist Logo">
                 <defs>
                     <linearGradient id="logoGold" x1="0%" y1="0%" x2="100%" y2="100%">
-                        <stop offset="0%" stop-color="#8E6E34" /><stop offset="30%" stop-color="#DAA520" /><stop offset="70%" stop-color="#F5D061" /><stop offset="100%" stop-color="#8E6E34" />
+                        <stop offset="0%" stop-color="#5A0016" /><stop offset="30%" stop-color="#800020" /><stop offset="70%" stop-color="#C2698A" /><stop offset="100%" stop-color="#5A0016" />
                     </linearGradient>
                 </defs>
                 <path class="logo-needle" d="M 12 25 L 42 25 M 39 23 L 39 27 C 39.5 27 40.5 26.5 40.5 25 C 40.5 23.5 39.5 23 39 23 Z" fill="none" stroke="url(#logoGold)" stroke-width="1.5" stroke-linecap="round" />

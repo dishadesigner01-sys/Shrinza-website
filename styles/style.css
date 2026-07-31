@@ -144,8 +144,8 @@ img {
 .navbar {
     display: flex;
     flex-direction: column;
-    padding: var(--spacing-sm) var(--spacing-md);
-    background-color: var(--color-ivory);
+    padding: 0.5rem var(--spacing-md);
+    background-color: var(--color-white);
     position: sticky;
     top: 0;
     z-index: 1000;
@@ -255,7 +255,7 @@ img {
 .splash-logo {
     width: clamp(360px, 48vw, 760px);
     height: auto;
-    aspect-ratio: 4 / 1;
+    aspect-ratio: 522 / 150;
 }
 
 .splash-logo-svg {
@@ -267,7 +267,7 @@ img {
 /* Needle appears first, centered on screen... */
 .splash-logo-needle-group {
     opacity: 0;
-    transform: translateX(203px) scale(0.85);
+    transform: translateX(207px) scale(0.85);
     transform-origin: 50% 50%;
     animation: splash-needle-reveal 1.5s ease-out 0.2s forwards;
 }
@@ -281,12 +281,12 @@ img {
 @keyframes splash-needle-reveal {
     0% {
         opacity: 0;
-        transform: translateX(203px) scale(0.85);
+        transform: translateX(207px) scale(0.85);
     }
 
     53% {
         opacity: 1;
-        transform: translateX(203px) scale(1);
+        transform: translateX(207px) scale(1);
     }
 
     100% {
@@ -356,9 +356,7 @@ img {
     display: flex;
     justify-content: center;
     gap: var(--spacing-md);
-    margin-top: 0.85rem;
-    padding-top: 0.85rem;
-    border-top: 1px solid rgba(0, 0, 0, 0.08);
+    margin-top: 0.35rem;
 }
 
 .nav-links a {
@@ -526,6 +524,40 @@ footer {
     color: var(--color-accent);
 }
 
+/* Contact Us — between the brand and newsletter columns in the footer */
+.footer-contact {
+    flex: 1;
+    min-width: 220px;
+}
+
+.footer-contact h4 {
+    color: var(--color-accent);
+    font-family: var(--font-brand);
+    font-size: 0.95rem;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 0.9rem;
+}
+
+.footer-contact-item {
+    display: flex;
+    align-items: center;
+    gap: 0.65rem;
+    color: rgba(255, 255, 255, 0.85);
+    font-size: 0.9rem;
+    margin-bottom: 0.75rem;
+}
+
+.footer-contact-item svg {
+    flex-shrink: 0;
+    color: var(--color-accent);
+}
+
+.footer-contact-item:hover {
+    color: var(--color-accent);
+}
+
 /* Newsletter — beside the social links in the footer */
 .footer-newsletter {
     flex: 1;
@@ -618,6 +650,10 @@ footer {
 
     .footer-newsletter-form {
         flex-direction: column;
+    }
+
+    .footer-contact-item {
+        justify-content: center;
     }
 }
 
