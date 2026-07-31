@@ -140,12 +140,38 @@ img {
     background-color: #bfa13f;
 }
 
+/* Plain underlined text link (no filled box) used for the hero and Discover CTAs */
+.cta-text-link {
+    display: inline-block;
+    font-family: var(--font-body);
+    font-weight: 700;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--color-primary);
+    border-bottom: 1px solid currentColor;
+    padding-bottom: 0.3rem;
+    transition: var(--transition-standard);
+}
+
+.cta-text-link:hover {
+    color: var(--color-primary-dark);
+}
+
+.cta-text-link-light {
+    color: var(--color-white);
+}
+
+.cta-text-link-light:hover {
+    color: var(--color-cream);
+}
+
 /* --- Navigation --- */
 .navbar {
     display: flex;
     flex-direction: column;
     padding: 0.5rem var(--spacing-md);
-    background-color: var(--color-white);
+    background-color: var(--color-text-dark);
     position: sticky;
     top: 0;
     z-index: 1000;
@@ -364,12 +390,12 @@ img {
     font-size: 0.85rem;
     letter-spacing: 1.5px;
     text-transform: uppercase;
-    color: var(--color-text-dark);
+    color: var(--color-white);
 }
 
 .nav-links a:hover,
 .nav-links a.active-link {
-    color: var(--color-primary);
+    color: var(--color-cream);
 }
 
 .nav-actions {
@@ -403,6 +429,28 @@ img {
     background: rgba(0, 0, 0, 0.4);
 }
 
+.hero-whatsapp-link {
+    position: fixed;
+    bottom: 1.5rem;
+    right: 1.5rem;
+    z-index: 900;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background-color: #25D366;
+    color: var(--color-white);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.3);
+    transition: var(--transition-standard);
+}
+
+.hero-whatsapp-link:hover {
+    transform: scale(1.08);
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.35);
+}
+
 .hero-content {
     position: relative;
     z-index: 1;
@@ -421,6 +469,55 @@ img {
     font-size: 1.2rem;
     margin-bottom: var(--spacing-md);
     font-style: italic;
+}
+
+/* --- Shop by Category --- */
+#categories.section {
+    padding-top: 3rem;
+}
+
+.category-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: var(--spacing-md);
+    margin-top: var(--spacing-md);
+}
+
+.category-card {
+    position: relative;
+    display: block;
+    height: 420px;
+    overflow: hidden;
+    border-radius: 4px;
+}
+
+.category-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.7s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.category-card:hover .category-image {
+    transform: scale(1.06);
+}
+
+.category-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.65) 0%, rgba(0, 0, 0, 0) 55%);
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    padding-bottom: 1.75rem;
+}
+
+.category-overlay h3 {
+    color: var(--color-white);
+    font-size: 1.35rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-weight: 400;
 }
 
 /* --- Featured Collection --- */
@@ -489,8 +586,8 @@ img {
 
 /* --- Footer --- */
 footer {
-    background-color: var(--color-white);
-    color: var(--color-text-dark);
+    background-color: var(--color-text-dark);
+    color: var(--color-white);
     padding: var(--spacing-lg) 0;
     text-align: center;
 }
@@ -510,7 +607,7 @@ footer {
 }
 
 .footer-tagline {
-    color: rgba(26, 26, 26, 0.7);
+    color: rgba(255, 255, 255, 0.75);
     margin-bottom: 0.5rem;
 }
 
@@ -521,7 +618,11 @@ footer {
 .social-links a {
     margin: 0 var(--spacing-sm) 0 0;
     font-size: 1.5rem;
-    color: var(--color-primary);
+    color: var(--color-white);
+}
+
+.social-links a:hover {
+    color: var(--color-cream);
 }
 
 /* Contact Us — between the brand and newsletter columns in the footer */
@@ -531,7 +632,7 @@ footer {
 }
 
 .footer-contact h4 {
-    color: var(--color-primary);
+    color: var(--color-cream);
     font-family: var(--font-brand);
     font-size: 0.95rem;
     font-weight: 700;
@@ -544,18 +645,18 @@ footer {
     display: flex;
     align-items: center;
     gap: 0.65rem;
-    color: rgba(26, 26, 26, 0.8);
+    color: rgba(255, 255, 255, 0.85);
     font-size: 0.9rem;
     margin-bottom: 0.75rem;
 }
 
 .footer-contact-item svg {
     flex-shrink: 0;
-    color: var(--color-primary);
+    color: var(--color-white);
 }
 
 .footer-contact-item:hover {
-    color: var(--color-primary);
+    color: var(--color-cream);
 }
 
 /* Newsletter — beside the social links in the footer */
@@ -566,7 +667,7 @@ footer {
 }
 
 .footer-newsletter h4 {
-    color: var(--color-primary);
+    color: var(--color-cream);
     font-family: var(--font-brand);
     font-size: 0.95rem;
     font-weight: 700;
@@ -576,7 +677,7 @@ footer {
 }
 
 .footer-newsletter p {
-    color: rgba(26, 26, 26, 0.7);
+    color: rgba(255, 255, 255, 0.75);
     font-size: 0.85rem;
     line-height: 1.5;
     margin-bottom: 1rem;
@@ -591,21 +692,21 @@ footer {
     flex: 1;
     min-width: 0;
     padding: 0.7rem 0.9rem;
-    border: 1px solid rgba(26, 26, 26, 0.18);
+    border: 1px solid rgba(255, 255, 255, 0.25);
     border-radius: 3px;
-    background: var(--color-white);
-    color: var(--color-text-dark);
+    background: rgba(255, 255, 255, 0.08);
+    color: var(--color-white);
     font-family: var(--font-body);
     font-size: 0.85rem;
     outline: none;
 }
 
 .footer-newsletter-form input::placeholder {
-    color: rgba(26, 26, 26, 0.4);
+    color: rgba(255, 255, 255, 0.5);
 }
 
 .footer-newsletter-form input:focus {
-    border-color: var(--color-primary);
+    border-color: var(--color-cream);
 }
 
 .footer-newsletter-form button {
@@ -615,7 +716,7 @@ footer {
 }
 
 .footer-newsletter-success {
-    color: var(--color-primary);
+    color: var(--color-cream);
     font-size: 0.85rem;
     font-weight: 600;
 }
@@ -698,7 +799,7 @@ footer {
     background: none;
     border: none;
     cursor: pointer;
-    color: var(--color-text-dark);
+    color: var(--color-white);
     position: relative;
     padding: 0.25rem;
     display: flex;
@@ -708,7 +809,7 @@ footer {
 }
 
 .nav-icon-btn:hover {
-    color: var(--color-primary);
+    color: var(--color-cream);
 }
 
 .cart-badge {
