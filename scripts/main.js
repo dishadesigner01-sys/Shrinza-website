@@ -821,6 +821,10 @@ document.addEventListener('DOMContentLoaded', () => {
     updateCartUi();
     updateFavoritesUi();
 
+    if (window.location.hash === '#start-consultation') {
+        openBridalModal();
+    }
+
     const splashScreen = document.getElementById('splash-screen');
     if (splashScreen) {
         if (window.location.hash) {

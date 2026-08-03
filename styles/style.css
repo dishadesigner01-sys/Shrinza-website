@@ -508,10 +508,6 @@ img {
     padding: 0;
 }
 
-#bridal.bridal-section {
-    padding-top: 1.5rem;
-}
-
 /* --- Brand Video --- */
 .brand-video-wrapper {
     display: inline-block;
@@ -557,6 +553,54 @@ img {
     width: 100%;
     height: auto;
     display: block;
+}
+
+.bestseller-image.bestseller-crop {
+    height: auto;
+    aspect-ratio: 2 / 3;
+    object-fit: cover;
+    object-position: center;
+}
+
+.bestseller-feature-card {
+    max-width: 480px;
+    grid-column: span 2;
+}
+
+.bestseller-craft-note {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    max-width: 480px;
+    grid-column: span 2;
+    padding: var(--spacing-md);
+}
+
+.bestseller-craft-note h3 {
+    color: var(--color-primary);
+    text-transform: uppercase;
+    font-size: 1.7rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    margin-bottom: 1.25rem;
+}
+
+.bestseller-craft-note p {
+    color: #555;
+    font-size: 1.1rem;
+    line-height: 1.8;
+    margin-bottom: 1.25rem;
+}
+
+@media (max-width: 700px) {
+    .bestseller-feature-card,
+    .bestseller-craft-note {
+        grid-column: span 1;
+    }
+}
+
+.bestseller-craft-note p:last-child {
+    margin-bottom: 0;
 }
 
 .bestseller-badge {
