@@ -822,21 +822,26 @@ document.addEventListener('DOMContentLoaded', () => {
     updateFavoritesUi();
 
     const splashScreen = document.getElementById('splash-screen');
-    const dismissSplash = () => {
-        if (!splashScreen) return;
-        window.setTimeout(() => {
+    if (splashScreen) {
+        if (window.location.hash) {
+            // Arriving via a direct link to a specific section (e.g. the Contact
+            // nav item) — skip the splash so the browser can jump straight there.
             splashScreen.classList.add('is-hidden');
-            document.body.style.overflow = '';
-        }, 2200);
-    };
+        } else {
+            document.body.style.overflow = 'hidden';
+            const dismissSplash = () => {
+                window.setTimeout(() => {
+                    splashScreen.classList.add('is-hidden');
+                    document.body.style.overflow = '';
+                }, 2200);
+            };
 
-    // Lock scroll during splash
-    document.body.style.overflow = 'hidden';
-
-    if (document.readyState === 'complete') {
-        dismissSplash();
-    } else {
-        window.addEventListener('load', dismissSplash, { once: true });
+            if (document.readyState === 'complete') {
+                dismissSplash();
+            } else {
+                window.addEventListener('load', dismissSplash, { once: true });
+            }
+        }
     }
 });
 

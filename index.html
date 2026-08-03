@@ -157,25 +157,24 @@
 
     <!-- Shop by Category -->
     <section id="categories" class="section container">
-        <div class="text-center">
-            <h2 class="text-burgundy" style="font-size: 1.6rem; margin: 0 0 1.5rem;">Curated For Every Occasion
-            </h2>
-        </div>
         <div class="category-grid">
-            <a href="#featured" class="category-card">
+            <a href="category-bridal.html" class="category-card">
                 <img src="assets/bridal-specialty.png" alt="Bridal Wear" class="category-image">
                 <div class="category-overlay">
                     <h3>Bridal Wear</h3>
                 </div>
             </a>
-            <a href="#featured" class="category-card">
+            <a href="category-sarees.html" class="category-card">
                 <img src="assets/product3.png" alt="Sarees" class="category-image">
                 <div class="category-overlay">
                     <h3>Sarees</h3>
                 </div>
             </a>
-            <a href="#featured" class="category-card">
-                <img src="assets/product1.png" alt="Evening Wear" class="category-image">
+            <a href="category-evening.html" class="category-card">
+                <div class="category-split-images">
+                    <img src="assets/product1.png" alt="Royal Velvet Gown" class="category-image">
+                    <img src="assets/product2.png" alt="Floral Crop Set" class="category-image">
+                </div>
                 <div class="category-overlay">
                     <h3>Evening Wear</h3>
                 </div>
@@ -185,108 +184,7 @@
 
     <!-- Featured Collection -->
     <section id="featured" class="section container">
-        <div class="text-center">
-            <h4 class="text-gold" style="letter-spacing: 2px; text-transform: uppercase; font-size: 0.9rem;">New
-                Arrivals</h4>
-            <h2 class="text-burgundy" style="font-size: 2.5rem; margin: 0.5rem 0 1.5rem;">Trending Indo-Western</h2>
-        </div>
-
-        <!-- Filter Controls -->
-        <div class="filter-container">
-            <button class="filter-btn active" data-filter="all">All</button>
-            <button class="filter-btn" data-filter="indo-western">Indo-Western</button>
-            <button class="filter-btn" data-filter="bridal">Bridal Wear</button>
-        </div>
-
         <div class="collection-grid">
-            <!-- Product 1 -->
-            <div class="product-card" data-category="indo-western" data-id="1">
-                <div class="product-image-wrapper">
-                    <img src="assets/product1.png" alt="Velvet Indo-Western Gown" class="product-image">
-                    <button class="favorite-toggle-btn" data-id="1" aria-label="Add to Favorites">
-                        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor"
-                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path
-                                d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z">
-                            </path>
-                        </svg>
-                    </button>
-                    <div class="product-overlay">
-                        <button class="btn btn-quick-view" data-id="1">Quick View</button>
-                        <button class="btn btn-add-to-cart" data-id="1">Add to Cart</button>
-                    </div>
-                </div>
-                <div class="product-info">
-                    <h3 class="product-title">Royal Velvet Gown</h3>
-                    <p class="product-price">₹12,999</p>
-                </div>
-            </div>
-            <!-- Product 2 -->
-            <div class="product-card" data-category="indo-western" data-id="2">
-                <div class="product-image-wrapper">
-                    <img src="assets/product2.png" alt="Embroidered Crop Top Skirt" class="product-image">
-                    <button class="favorite-toggle-btn" data-id="2" aria-label="Add to Favorites">
-                        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor"
-                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path
-                                d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z">
-                            </path>
-                        </svg>
-                    </button>
-                    <div class="product-overlay">
-                        <button class="btn btn-quick-view" data-id="2">Quick View</button>
-                        <button class="btn btn-add-to-cart" data-id="2">Add to Cart</button>
-                    </div>
-                </div>
-                <div class="product-info">
-                    <h3 class="product-title">Floral Crop Set</h3>
-                    <p class="product-price">₹8,499</p>
-                </div>
-            </div>
-            <!-- Product 3 -->
-            <div class="product-card" data-category="indo-western" data-id="3">
-                <div class="product-image-wrapper">
-                    <img src="assets/product3.png" alt="Fusion Saree Drape" class="product-image">
-                    <button class="favorite-toggle-btn" data-id="3" aria-label="Add to Favorites">
-                        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor"
-                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path
-                                d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z">
-                            </path>
-                        </svg>
-                    </button>
-                    <div class="product-overlay">
-                        <button class="btn btn-quick-view" data-id="3">Quick View</button>
-                        <button class="btn btn-add-to-cart" data-id="3">Add to Cart</button>
-                    </div>
-                </div>
-                <div class="product-info">
-                    <h3 class="product-title">Fusion Drape Saree</h3>
-                    <p class="product-price">₹15,000</p>
-                </div>
-            </div>
-            <!-- Product 4 -->
-            <div class="product-card" data-category="bridal" data-id="4">
-                <div class="product-image-wrapper">
-                    <img src="assets/bridal-specialty.png" alt="Custom Zardosi Lehenga" class="product-image">
-                    <button class="favorite-toggle-btn" data-id="4" aria-label="Add to Favorites">
-                        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor"
-                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path
-                                d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z">
-                            </path>
-                        </svg>
-                    </button>
-                    <div class="product-overlay">
-                        <button class="btn btn-quick-view" data-id="4">Quick View</button>
-                        <button class="btn btn-add-to-cart" data-id="4">Add to Cart</button>
-                    </div>
-                </div>
-                <div class="product-info">
-                    <h3 class="product-title">Emerald Heritage Lehenga</h3>
-                    <p class="product-price">₹45,999</p>
-                </div>
-            </div>
         </div>
     </section>
 
