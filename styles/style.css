@@ -42,7 +42,7 @@ body {
     font-family: var(--font-body);
     color: var(--color-text-dark);
     line-height: 1.6;
-    background-color: var(--color-ivory);
+    background-color: var(--color-white);
     overflow-x: hidden;
 }
 
@@ -516,11 +516,12 @@ img {
 }
 
 .brand-video {
-    height: 88vh;
-    max-height: 950px;
+    height: 98vh;
+    max-height: 1200px;
     width: auto;
     max-width: 100%;
     aspect-ratio: 9 / 16;
+    object-fit: cover;
     border-radius: 4px;
     box-shadow: 0 25px 60px rgba(0, 0, 0, 0.18);
     background-color: #000;
@@ -571,7 +572,7 @@ img {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    max-width: 480px;
+    max-width: 560px;
     grid-column: span 2;
     padding: var(--spacing-md);
 }
@@ -579,17 +580,17 @@ img {
 .bestseller-craft-note h3 {
     color: var(--color-primary);
     text-transform: uppercase;
-    font-size: 1.7rem;
+    font-size: 2.2rem;
     font-weight: 700;
     letter-spacing: 1px;
-    margin-bottom: 1.25rem;
+    margin-bottom: 1.5rem;
 }
 
 .bestseller-craft-note p {
     color: #555;
-    font-size: 1.1rem;
+    font-size: 1.35rem;
     line-height: 1.8;
-    margin-bottom: 1.25rem;
+    margin-bottom: 1.5rem;
 }
 
 @media (max-width: 700px) {
@@ -770,8 +771,8 @@ img {
 
 /* --- Footer --- */
 footer {
-    background-color: var(--color-text-dark);
-    color: var(--color-white);
+    background-color: var(--color-white);
+    color: var(--color-text-dark);
     padding: 1.75rem 0;
     text-align: center;
 }
@@ -813,7 +814,7 @@ footer {
 }
 
 .footer-legal-links a {
-    color: var(--color-cream);
+    color: var(--color-text-dark);
     font-family: var(--font-brand);
     font-size: 0.95rem;
     font-weight: 700;
@@ -822,11 +823,11 @@ footer {
 }
 
 .footer-legal-links a:hover {
-    color: var(--color-white);
+    color: var(--color-primary);
 }
 
 .footer-tagline {
-    color: rgba(255, 255, 255, 0.75);
+    color: rgba(0, 0, 0, 0.75);
     margin-bottom: 0.4rem;
 }
 
@@ -837,11 +838,11 @@ footer {
 .social-links a {
     margin: 0 var(--spacing-sm) 0 0;
     font-size: 1.5rem;
-    color: var(--color-white);
+    color: var(--color-text-dark);
 }
 
 .social-links a:hover {
-    color: var(--color-cream);
+    color: var(--color-primary);
 }
 
 /* Contact Us — between the brand and newsletter columns in the footer */
@@ -851,7 +852,7 @@ footer {
 }
 
 .footer-contact h4 {
-    color: var(--color-cream);
+    color: var(--color-text-dark);
     font-family: var(--font-brand);
     font-size: 0.95rem;
     font-weight: 700;
@@ -864,18 +865,18 @@ footer {
     display: flex;
     align-items: center;
     gap: 0.65rem;
-    color: rgba(255, 255, 255, 0.85);
+    color: rgba(0, 0, 0, 0.85);
     font-size: 0.9rem;
     margin-bottom: 0.5rem;
 }
 
 .footer-contact-item svg {
     flex-shrink: 0;
-    color: var(--color-white);
+    color: var(--color-text-dark);
 }
 
 .footer-contact-item:hover {
-    color: var(--color-cream);
+    color: var(--color-primary);
 }
 
 /* Newsletter — beside the social links in the footer */
@@ -886,7 +887,7 @@ footer {
 }
 
 .footer-newsletter h4 {
-    color: var(--color-cream);
+    color: var(--color-text-dark);
     font-family: var(--font-brand);
     font-size: 0.95rem;
     font-weight: 700;
@@ -896,7 +897,7 @@ footer {
 }
 
 .footer-newsletter p {
-    color: rgba(255, 255, 255, 0.75);
+    color: rgba(0, 0, 0, 0.75);
     font-size: 0.85rem;
     line-height: 1.4;
     margin-bottom: 0.75rem;
@@ -911,21 +912,21 @@ footer {
     flex: 1;
     min-width: 0;
     padding: 0.7rem 0.9rem;
-    border: 1px solid rgba(255, 255, 255, 0.25);
+    border: 1px solid rgba(0, 0, 0, 0.25);
     border-radius: 3px;
-    background: rgba(255, 255, 255, 0.08);
-    color: var(--color-white);
+    background: rgba(0, 0, 0, 0.04);
+    color: var(--color-text-dark);
     font-family: var(--font-body);
     font-size: 0.85rem;
     outline: none;
 }
 
 .footer-newsletter-form input::placeholder {
-    color: rgba(255, 255, 255, 0.5);
+    color: rgba(0, 0, 0, 0.5);
 }
 
 .footer-newsletter-form input:focus {
-    border-color: var(--color-cream);
+    border-color: var(--color-primary);
 }
 
 .footer-newsletter-form button {
@@ -935,7 +936,7 @@ footer {
 }
 
 .footer-newsletter-success {
-    color: var(--color-cream);
+    color: var(--color-text-dark);
     font-size: 0.85rem;
     font-weight: 600;
 }
