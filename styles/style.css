@@ -666,6 +666,13 @@ img {
     background-color: var(--color-primary);
 }
 
+.showcase-photo {
+    max-width: 480px;
+    width: 100%;
+    border-radius: 4px;
+    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.18);
+}
+
 .category-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
