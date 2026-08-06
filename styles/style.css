@@ -850,12 +850,19 @@ footer {
 }
 
 .social-links {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
     margin: 0.75rem 0 0;
 }
 
+.footer-brand .social-links {
+    justify-content: flex-start;
+}
+
 .social-links a {
-    margin: 0 var(--spacing-sm) 0 0;
-    font-size: 1.5rem;
+    display: inline-flex;
     color: var(--color-text-dark);
 }
 
