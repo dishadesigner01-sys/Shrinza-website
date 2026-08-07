@@ -28,6 +28,15 @@
     background: rgba(0, 0, 0, 0.45);
 }
 
+.discover-hero .navbar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 20;
+    box-shadow: none;
+}
+
 .discover-hero-content {
     position: relative;
     z-index: 1;
