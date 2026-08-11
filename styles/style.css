@@ -702,6 +702,24 @@ img {
     background-color: var(--color-primary);
 }
 
+.bestseller-highlight {
+    animation: bestsellerPulse 1.8s ease-out 2;
+}
+
+@keyframes bestsellerPulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(128, 0, 32, 0.6);
+    }
+
+    70% {
+        box-shadow: 0 0 0 14px rgba(128, 0, 32, 0);
+    }
+
+    100% {
+        box-shadow: 0 0 0 0 rgba(128, 0, 32, 0);
+    }
+}
+
 .showcase-fullbleed {
     width: calc(100vw - 2cm);
     position: relative;

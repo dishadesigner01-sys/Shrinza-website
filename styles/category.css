@@ -28,6 +28,15 @@
     background: rgba(0, 0, 0, 0.45);
 }
 
+#gowns-hero .navbar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 20;
+    box-shadow: none;
+}
+
 .category-page-hero-content {
     position: relative;
     z-index: 1;

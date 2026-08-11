@@ -662,29 +662,73 @@ document.addEventListener('DOMContentLoaded', () => {
     if (searchToggleBtn) searchToggleBtn.addEventListener('click', openSearchModal);
     if (searchModalClose) searchModalClose.addEventListener('click', closeAllModals);
 
+    // Maps search terms straight to the garment that best matches — either its
+    // category page, or (for pieces that only live in the Bestsellers grid) an
+    // anchor to scroll to and highlight on this page.
+    const SEARCH_INDEX = [
+        { keywords: ['saree', 'sari', 'fusion drape saree', 'drape saree'], url: 'category-sarees.html' },
+        { keywords: ['bridal', 'bridal wear', 'bride', 'lehenga', 'emerald heritage lehenga', 'wedding lehenga', 'heritage lehenga'], url: 'category-bridal.html' },
+        { keywords: ['gown', 'gowns', 'royal velvet gown', 'velvet gown', 'mint floral gown', 'mint gown', 'floral embroidered gown', 'mint floral embroidered'], url: 'category-gowns.html' },
+        { keywords: ['evening', 'evening wear', 'floral crop set', 'crop set'], url: 'category-evening.html' },
+        { keywords: ['jacket dhoti', 'dhoti set', 'beige jacket', 'indo-western jacket dhoti'], url: '#bestseller-jacket-dhoti' },
+        { keywords: ['grey embroidered jacket', 'grey jacket lehenga', 'embroidered jacket lehenga', 'grey lehenga set'], url: '#bestseller-grey-lehenga' },
+        { keywords: ['pink cape', 'cape sleeve', 'cape set', 'pink crop top', 'crop top skirt'], url: '#bestseller-pink-cape' }
+    ];
+
+    function findBestGarmentMatch(term) {
+        let best = null;
+        let bestScore = -1;
+        SEARCH_INDEX.forEach(entry => {
+            entry.keywords.forEach(kw => {
+                let score = -1;
+                if (term === kw) {
+                    // Exact match always wins, regardless of what longer keywords
+                    // elsewhere merely happen to contain this term as a substring.
+                    score = 1000;
+                } else if (kw.includes(term)) {
+                    // Search term is a fragment of a longer keyword — prefer the
+                    // tightest-fitting keyword (least leftover text).
+                    score = 500 - (kw.length - term.length);
+                } else if (term.includes(kw)) {
+                    // Keyword is a fragment of a longer/plural search term.
+                    score = 200 + kw.length;
+                }
+                if (score > bestScore) {
+                    bestScore = score;
+                    best = entry;
+                }
+            });
+        });
+        return best;
+    }
+
+    function scrollToAndHighlight(id) {
+        const el = document.getElementById(id);
+        if (!el) return;
+        el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        el.classList.add('bestseller-highlight');
+        window.setTimeout(() => el.classList.remove('bestseller-highlight'), 3600);
+    }
+
     function runProductSearch(query) {
         const term = query.trim().toLowerCase();
         if (!term) return;
 
-        filterBtns.forEach(b => b.classList.remove('active'));
-        const allBtn = document.querySelector('.filter-btn[data-filter="all"]');
-        if (allBtn) allBtn.classList.add('active');
+        const match = findBestGarmentMatch(term);
 
-        let matchCount = 0;
-        productCards.forEach(card => {
-            const title = card.querySelector('.product-title');
-            const titleText = title ? title.textContent.toLowerCase() : '';
-            const category = (card.dataset.category || '').toLowerCase();
-            const isMatch = titleText.includes(term) || category.includes(term);
-            card.style.display = isMatch ? 'block' : 'none';
-            if (isMatch) matchCount++;
-        });
+        if (!match) {
+            if (searchNoResults) searchNoResults.classList.remove('hidden');
+            return;
+        }
 
-        if (searchNoResults) searchNoResults.classList.toggle('hidden', matchCount > 0);
-
+        if (searchNoResults) searchNoResults.classList.add('hidden');
         closeAllModals();
-        const featuredSection = document.getElementById('featured');
-        if (featuredSection) featuredSection.scrollIntoView({ behavior: 'smooth' });
+
+        if (match.url.startsWith('#')) {
+            scrollToAndHighlight(match.url.slice(1));
+        } else {
+            window.location.href = match.url;
+        }
     }
 
     if (searchForm) {
