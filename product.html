@@ -4,13 +4,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SHRINZA | Bridal Studio</title>
-    <meta name="description"
-        content="The SHRINZA Bridal Studio — bespoke bridal couture designed just for you, from personal consultation to hand-embroidered detailing.">
+    <title id="product-page-title">SHRINZA | Product</title>
+    <meta name="description" content="Product details, sizing, and ordering options for SHRINZA Indo-Western and bridal apparel.">
     <link rel="stylesheet" href="styles/style.css">
+    <link rel="stylesheet" href="styles/category.css">
+    <link rel="stylesheet" href="styles/product.css">
 </head>
 
-<body id="bridal-studio-page" style="background-color: var(--color-grey-light);">
+<body>
 
     <!-- Navbar -->
     <nav class="navbar">
@@ -42,9 +43,9 @@
         </a>
         <div class="nav-links">
             <a href="index.html#hero">Home</a>
-            <a href="index.html#categories">SHOP</a>
+            <a href="shop-all.html">SHOP</a>
             <a href="index.html#bestsellers">Bestseller</a>
-            <a href="bridal-studio.html" class="active-link">Bridal Studio</a>
+            <a href="bridal-studio.html">Bridal Studio</a>
             <a href="discover.html">Discover</a>
             <a href="index.html#footer">Contact</a>
         </div>
@@ -101,30 +102,128 @@
         </div>
     </nav>
 
-    <!-- Bridal Studio -->
-    <section class="bridal-section" style="padding-top: 3rem;">
-        <div class="bridal-image-container">
-            <img src="assets/bridal-specialty.png" alt="Custom Bridal Design" class="bridal-image">
+    <!-- Product Detail -->
+    <section class="section container product-detail" id="product-detail-section">
+        <nav class="product-breadcrumb" aria-label="Breadcrumb">
+            <a href="shop-all.html">Shop All</a>
+            <span aria-hidden="true">/</span>
+            <a id="product-breadcrumb-category" href="shop-all.html">Category</a>
+        </nav>
+
+        <div class="product-detail-grid">
+            <div class="product-detail-image-wrapper">
+                <button id="product-favorite-btn" class="favorite-toggle-btn" type="button" aria-label="Add to Favorites">
+                    <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor"
+                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path
+                            d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z">
+                        </path>
+                    </svg>
+                </button>
+                <img id="product-image" src="" alt="">
+            </div>
+            <div class="product-detail-info">
+                <h4 id="product-category-label" class="product-detail-label">Category</h4>
+                <h1 id="product-title">Product Name</h1>
+                <p id="product-price" class="product-detail-price">₹0</p>
+                <div class="divider"></div>
+
+                <div class="product-detail-size">
+                    <label id="product-size-label">Select Size</label>
+                    <div id="product-size-options" class="product-size-options">
+                        <button type="button" class="product-size-chip" data-size="S">S</button>
+                        <button type="button" class="product-size-chip is-selected" data-size="M">M</button>
+                        <button type="button" class="product-size-chip" data-size="L">L</button>
+                        <button type="button" class="product-size-chip" data-size="XL">XL</button>
+                    </div>
+                </div>
+
+                <div class="product-detail-actions">
+                    <button id="product-add-to-cart" class="btn btn-outline btn-block">Add to Cart</button>
+                    <button id="product-buy-now" class="btn btn-primary btn-block">Buy Now</button>
+                </div>
+
+                <a id="product-whatsapp-consult" href="https://wa.me/919891614960" target="_blank" rel="noopener"
+                    class="product-consult-link">
+                    <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
+                        <path
+                            d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.48 1.32 4.99L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91C21.96 6.45 17.5 2 12.04 2zm0 18.15h-.01a8.2 8.2 0 0 1-4.19-1.15l-.3-.18-3.12.82.83-3.04-.19-.31a8.2 8.2 0 0 1-1.26-4.38c0-4.54 3.7-8.24 8.25-8.24 2.2 0 4.27.86 5.83 2.42a8.18 8.18 0 0 1 2.41 5.83c0 4.55-3.7 8.24-8.25 8.24zm4.52-6.16c-.25-.12-1.47-.72-1.7-.81-.23-.08-.39-.12-.56.12-.17.25-.64.81-.78.97-.15.17-.29.19-.54.06-.25-.12-1.04-.38-1.99-1.22-.74-.66-1.23-1.46-1.38-1.71-.15-.25-.02-.38.11-.51.11-.11.25-.29.37-.43.12-.15.16-.25.25-.42.08-.17.04-.31-.02-.43-.06-.12-.56-1.34-.76-1.84-.2-.48-.4-.42-.56-.42h-.48c-.17 0-.43.06-.66.31-.23.25-.86.84-.86 2.05 0 1.21.88 2.38 1 2.55.12.17 1.74 2.65 4.21 3.72.59.25 1.05.4 1.41.51.59.19 1.13.16 1.56.1.48-.07 1.47-.6 1.68-1.18.21-.58.21-1.08.15-1.18-.06-.1-.23-.16-.48-.28z">
+                        </path>
+                    </svg>
+                    <span>Consult the Studio on WhatsApp</span>
+                </a>
+
+                <div class="product-accordion">
+                    <div class="product-accordion-item">
+                        <button class="product-accordion-trigger is-open" type="button" aria-expanded="true">
+                            <span>Description</span>
+                            <span class="product-accordion-icon">&minus;</span>
+                        </button>
+                        <div class="product-accordion-panel">
+                            <p id="product-description">Description</p>
+                        </div>
+                    </div>
+                    <div class="product-accordion-item">
+                        <button class="product-accordion-trigger" type="button" aria-expanded="false">
+                            <span>Shipping Information</span>
+                            <span class="product-accordion-icon">&plus;</span>
+                        </button>
+                        <div class="product-accordion-panel hidden">
+                            <p>Every piece is hand-finished to order in our Delhi atelier, so please allow 7&ndash;10
+                                business days before dispatch. Shipping is complimentary across India via tracked
+                                courier. For international delivery or a rush timeline, consult the studio on
+                                WhatsApp and we'll confirm what's possible before you order.</p>
+                        </div>
+                    </div>
+                    <div class="product-accordion-item">
+                        <button class="product-accordion-trigger" type="button" aria-expanded="false">
+                            <span>Country of Origin</span>
+                            <span class="product-accordion-icon">&plus;</span>
+                        </button>
+                        <div class="product-accordion-panel hidden">
+                            <p>Made in India. Every SHRINZA garment is designed and hand-finished in our atelier in
+                                Delhi.</p>
+                        </div>
+                    </div>
+                    <div class="product-accordion-item">
+                        <button class="product-accordion-trigger" type="button" aria-expanded="false">
+                            <span>Manufacturing and Packaging</span>
+                            <span class="product-accordion-icon">&plus;</span>
+                        </button>
+                        <div class="product-accordion-panel hidden">
+                            <p>Cut, embroidered, and finished by hand in our Delhi workshop, then quality-checked
+                                piece by piece. Each garment is wrapped in acid-free tissue and packed in a branded
+                                SHRINZA box to protect embellishment and embroidery in transit.</p>
+                        </div>
+                    </div>
+                    <div class="product-accordion-item">
+                        <button class="product-accordion-trigger" type="button" aria-expanded="false">
+                            <span>Terms and Conditions</span>
+                            <span class="product-accordion-icon">&plus;</span>
+                        </button>
+                        <div class="product-accordion-panel hidden">
+                            <p>Made-to-order and bridal pieces are non-returnable once production has begun.
+                                Ready-to-ship items may be exchanged within 3 days of delivery if unworn, unaltered,
+                                and in original packaging, subject to inspection. Colours may vary slightly from
+                                photos due to screen settings and hand-dyeing. For sizing questions or custom
+                                alterations, please consult the studio before you order.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="bridal-content">
-            <h2 class="text-burgundy" style="font-size: 3rem; margin: 1rem 0;">Designed Just For You</h2>
-            <p style="margin-bottom: 2rem; font-size: 1.1rem; color: #555;">
-                Every bride tells a story. At SHRINZA, we craft that story into reality with our bespoke bridal
-                services.
-                From intricate zardosi work to modern silhouettes, your dream outfit awaits.
-            </p>
-            <ul style="margin-bottom: 2rem; color: #444;">
-                <li style="margin-bottom: 0.5rem;">✓ Personal Designer Consultation</li>
-                <li style="margin-bottom: 0.5rem;">✓ Custom Fabric Selection</li>
-                <li style="margin-bottom: 0.5rem;">✓ Hand-Embroidered Detailing</li>
-            </ul>
-            <a href="index.html#start-consultation" class="btn btn-primary">Start Your Journey</a>
-        </div>
+    </section>
+
+    <!-- Not found state (hidden unless the id in the URL doesn't resolve) -->
+    <section class="section container product-not-found hidden" id="product-not-found">
+        <h2>We couldn't find that garment</h2>
+        <p>It may have been moved. Browse the full collection instead.</p>
+        <a href="shop-all.html" class="btn btn-primary">Shop All Garments</a>
     </section>
 
     <!-- Footer -->
     <footer id="footer">
-        <div class="footer-logo-center">
+        <div class="container">
             <div class="logo-wrapper logo-footer">
                 <div id="footer-logo-svg-holder">
                     <svg class="logo-symbol" viewBox="43 0 522 150" aria-label="SHRINZA Logo">
@@ -151,9 +250,6 @@
                     </svg>
                 </div>
             </div>
-        </div>
-
-        <div class="container">
             <div class="footer-legal-links">
                 <a href="#">Terms and Conditions</a>
                 <a href="#">FAQs</a>
@@ -397,6 +493,7 @@
     <script src="scripts/catalog.js"></script>
     <script src="scripts/store.js"></script>
     <script src="scripts/main.js"></script>
+    <script src="scripts/product.js"></script>
     <script src="scripts/navbar-scroll.js"></script>
 </body>
 

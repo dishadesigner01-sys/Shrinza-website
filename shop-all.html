@@ -51,6 +51,56 @@
                 <a href="discover.html">Discover</a>
                 <a href="index.html#footer">Contact</a>
             </div>
+            <div class="nav-actions" style="display: flex; align-items: center; gap: 1.5rem;">
+                <button id="search-toggle-btn" class="nav-icon-btn" aria-label="Search">
+                    <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="11" cy="11" r="8"></circle>
+                        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                    </svg>
+                </button>
+                <div class="account-menu">
+                    <button id="account-toggle-btn" class="nav-icon-btn" aria-label="Account">
+                        <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                            <circle cx="12" cy="7" r="4"></circle>
+                        </svg>
+                    </button>
+                    <div id="account-panel" class="account-panel">
+                        <div id="account-panel-guest" class="account-panel-content">
+                            <p>Sign in to track your orders.</p>
+                            <button id="account-open-auth-btn" class="btn btn-primary btn-block">Login / Sign Up</button>
+                        </div>
+                        <div id="account-panel-user" class="account-panel-content hidden">
+                            <p class="account-panel-name" id="account-customer-name">—</p>
+                            <p class="account-panel-id">Customer ID<br><strong id="account-customer-id">—</strong></p>
+                            <p class="account-panel-mobile" id="account-customer-mobile">—</p>
+                            <a href="orders.html" class="btn btn-primary btn-block account-panel-orders-link">My
+                                Orders</a>
+                            <button id="account-logout-btn" class="btn btn-outline btn-block">Logout</button>
+                        </div>
+                    </div>
+                </div>
+                <button id="favorites-toggle-btn" class="nav-icon-btn" aria-label="Open Favorites">
+                    <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <path
+                            d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z">
+                        </path>
+                    </svg>
+                    <span id="favorites-badge" class="cart-badge">0</span>
+                </button>
+                <button id="cart-toggle-btn" class="nav-icon-btn" aria-label="Open Cart">
+                    <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="9" cy="21" r="1"></circle>
+                        <circle cx="20" cy="21" r="1"></circle>
+                        <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+                    </svg>
+                    <span id="cart-badge" class="cart-badge">0</span>
+                </button>
+            </div>
             </div>
         </nav>
         <div class="category-page-hero-overlay"></div>
@@ -79,15 +129,19 @@
                             </path>
                         </svg>
                     </button>
-                    <img src="assets/bridal-specialty.png" alt="Emerald Heritage Lehenga">
+                    <a href="product.html?id=4">
+                        <img src="assets/bridal-specialty.png" alt="Emerald Heritage Lehenga">
+                    </a>
                 </div>
                 <div class="category-showcase-details">
-                    <h3>Emerald Heritage Lehenga</h3>
+                    <a href="product.html?id=4" class="category-showcase-link"><h3>Emerald Heritage Lehenga</h3></a>
                     <p class="category-showcase-price">&#8377;45,999</p>
-                    <p class="category-showcase-desc">
-                        A masterpiece design from the SHRINZA bridal line. Features a deep emerald color block,
-                        zardozi gold threadwork, and an organza dupatta.
-                    </p>
+                    <a href="product.html?id=4" class="category-showcase-link">
+                        <p class="category-showcase-desc">
+                            A masterpiece design from the SHRINZA bridal line. Features a deep emerald color block,
+                            zardozi gold threadwork, and an organza dupatta.
+                        </p>
+                    </a>
                 </div>
             </div>
             <div class="category-showcase-card">
@@ -100,15 +154,19 @@
                             </path>
                         </svg>
                     </button>
-                    <img src="assets/product3.png" alt="Fusion Drape Saree">
+                    <a href="product.html?id=3">
+                        <img src="assets/product3.png" alt="Fusion Drape Saree">
+                    </a>
                 </div>
                 <div class="category-showcase-details">
-                    <h3>Fusion Drape Saree</h3>
+                    <a href="product.html?id=3" class="category-showcase-link"><h3>Fusion Drape Saree</h3></a>
                     <p class="category-showcase-price">&#8377;15,000</p>
-                    <p class="category-showcase-desc">
-                        Bringing together structural drapes and classic saree folds, this pre-stitched fusion drape
-                        saree offers unmatched elegance with absolute comfort.
-                    </p>
+                    <a href="product.html?id=3" class="category-showcase-link">
+                        <p class="category-showcase-desc">
+                            Bringing together structural drapes and classic saree folds, this pre-stitched fusion drape
+                            saree offers unmatched elegance with absolute comfort.
+                        </p>
+                    </a>
                 </div>
             </div>
             <div class="category-showcase-card">
@@ -121,17 +179,21 @@
                             </path>
                         </svg>
                     </button>
-                    <img src="assets/product1.png" alt="Royal Velvet Gown">
+                    <a href="product.html?id=1">
+                        <img src="assets/product1.png" alt="Royal Velvet Gown">
+                    </a>
                 </div>
                 <div class="category-showcase-details">
-                    <h3>Royal Velvet Gown</h3>
+                    <a href="product.html?id=1" class="category-showcase-link"><h3>Royal Velvet Gown</h3></a>
                     <a href="https://wa.me/919891614960?text=Hi%2C%20I%27d%20like%20to%20know%20the%20price%20for%20the%20Royal%20Velvet%20Gown."
                         class="category-showcase-price category-showcase-price-link" target="_blank"
                         rel="noopener">Price on Request</a>
-                    <p class="category-showcase-desc">
-                        Crafted in heavy royal velvet, this Indo-Western fusion gown features premium hand
-                        embroidery along the borders and classic necklines.
-                    </p>
+                    <a href="product.html?id=1" class="category-showcase-link">
+                        <p class="category-showcase-desc">
+                            Crafted in heavy royal velvet, this Indo-Western fusion gown features premium hand
+                            embroidery along the borders and classic necklines.
+                        </p>
+                    </a>
                 </div>
             </div>
             <div class="category-showcase-card">
@@ -144,15 +206,19 @@
                             </path>
                         </svg>
                     </button>
-                    <img src="assets/bestseller-mint-floral-gown.jpeg" alt="Mint Floral Embroidered Gown">
+                    <a href="product.html?id=5">
+                        <img src="assets/bestseller-mint-floral-gown.jpeg" alt="Mint Floral Embroidered Gown">
+                    </a>
                 </div>
                 <div class="category-showcase-details">
-                    <h3>Mint Floral Embroidered Gown</h3>
+                    <a href="product.html?id=5" class="category-showcase-link"><h3>Mint Floral Embroidered Gown</h3></a>
                     <p class="category-showcase-price">&#8377;18,999</p>
-                    <p class="category-showcase-desc">
-                        A soft mint silhouette hand-embroidered with florals from bodice to hem, finished with
-                        delicate detailing along the border.
-                    </p>
+                    <a href="product.html?id=5" class="category-showcase-link">
+                        <p class="category-showcase-desc">
+                            A soft mint silhouette hand-embroidered with florals from bodice to hem, finished with
+                            delicate detailing along the border.
+                        </p>
+                    </a>
                 </div>
             </div>
             <div class="category-showcase-card">
@@ -165,15 +231,19 @@
                             </path>
                         </svg>
                     </button>
-                    <img src="assets/product2.png" alt="Floral Crop Set">
+                    <a href="product.html?id=2">
+                        <img src="assets/product2.png" alt="Floral Crop Set">
+                    </a>
                 </div>
                 <div class="category-showcase-details">
-                    <h3>Floral Crop Set</h3>
+                    <a href="product.html?id=2" class="category-showcase-link"><h3>Floral Crop Set</h3></a>
                     <p class="category-showcase-price">&#8377;8,499</p>
-                    <p class="category-showcase-desc">
-                        A fresh and modern silhouette featuring a floral embroidered crop top with a flared
-                        georgette skirt. Perfect for light festivities.
-                    </p>
+                    <a href="product.html?id=2" class="category-showcase-link">
+                        <p class="category-showcase-desc">
+                            A fresh and modern silhouette featuring a floral embroidered crop top with a flared
+                            georgette skirt. Perfect for light festivities.
+                        </p>
+                    </a>
                 </div>
             </div>
             <div class="category-showcase-card">
@@ -186,15 +256,19 @@
                             </path>
                         </svg>
                     </button>
-                    <img src="assets/bestseller-jacket-dhoti.avif" alt="Beige Indo-Western Jacket-Style Dhoti Set">
+                    <a href="product.html?id=6">
+                        <img src="assets/bestseller-jacket-dhoti.avif" alt="Beige Indo-Western Jacket-Style Dhoti Set">
+                    </a>
                 </div>
                 <div class="category-showcase-details">
-                    <h3>Beige Indo-Western Jacket-Style Dhoti Set</h3>
+                    <a href="product.html?id=6" class="category-showcase-link"><h3>Beige Indo-Western Jacket-Style Dhoti Set</h3></a>
                     <p class="category-showcase-price">&#8377;22,999</p>
-                    <p class="category-showcase-desc">
-                        A mirror-work jacket paired with a tiered sharara-style dhoti, hand-finished for a
-                        contemporary bridesmaid or sangeet look.
-                    </p>
+                    <a href="product.html?id=6" class="category-showcase-link">
+                        <p class="category-showcase-desc">
+                            A mirror-work jacket paired with a tiered sharara-style dhoti, hand-finished for a
+                            contemporary bridesmaid or sangeet look.
+                        </p>
+                    </a>
                 </div>
             </div>
             <div class="category-showcase-card">
@@ -207,15 +281,19 @@
                             </path>
                         </svg>
                     </button>
-                    <img src="assets/bestseller-grey-embroidered-jacket-lehenga.webp" alt="Grey Embroidered Jacket Lehenga Set">
+                    <a href="product.html?id=7">
+                        <img src="assets/bestseller-grey-embroidered-jacket-lehenga.webp" alt="Grey Embroidered Jacket Lehenga Set">
+                    </a>
                 </div>
                 <div class="category-showcase-details">
-                    <h3>Grey Embroidered Jacket Lehenga Set</h3>
+                    <a href="product.html?id=7" class="category-showcase-link"><h3>Grey Embroidered Jacket Lehenga Set</h3></a>
                     <p class="category-showcase-price">&#8377;28,999</p>
-                    <p class="category-showcase-desc">
-                        A heavily embroidered open jacket layered over a flowing lehenga, finished with gold
-                        threadwork along every border.
-                    </p>
+                    <a href="product.html?id=7" class="category-showcase-link">
+                        <p class="category-showcase-desc">
+                            A heavily embroidered open jacket layered over a flowing lehenga, finished with gold
+                            threadwork along every border.
+                        </p>
+                    </a>
                 </div>
             </div>
             <div class="category-showcase-card">
@@ -228,15 +306,19 @@
                             </path>
                         </svg>
                     </button>
-                    <img src="assets/bestseller-pink-cape-set.jpg" alt="Pink Cape Sleeve Crop Top &amp; Skirt Set">
+                    <a href="product.html?id=8">
+                        <img src="assets/bestseller-pink-cape-set.jpg" alt="Pink Cape Sleeve Crop Top &amp; Skirt Set">
+                    </a>
                 </div>
                 <div class="category-showcase-details">
-                    <h3>Pink Cape Sleeve Crop Top &amp; Skirt Set</h3>
+                    <a href="product.html?id=8" class="category-showcase-link"><h3>Pink Cape Sleeve Crop Top &amp; Skirt Set</h3></a>
                     <p class="category-showcase-price">&#8377;9,999</p>
-                    <p class="category-showcase-desc">
-                        A hand-embellished cape-sleeve crop top paired with a flowing skirt, in a soft blush pink
-                        for daytime celebrations.
-                    </p>
+                    <a href="product.html?id=8" class="category-showcase-link">
+                        <p class="category-showcase-desc">
+                            A hand-embellished cape-sleeve crop top paired with a flowing skirt, in a soft blush pink
+                            for daytime celebrations.
+                        </p>
+                    </a>
                 </div>
             </div>
         </div>
@@ -344,8 +426,186 @@
         </div>
     </footer>
 
+    <!-- Cart Drawer -->
+    <div id="cart-drawer" class="cart-drawer">
+        <div class="cart-drawer-header">
+            <h3>Your Shopping Bag</h3>
+            <button id="cart-close-btn" class="close-btn" aria-label="Close Cart">&times;</button>
+        </div>
+        <div id="cart-items-container" class="cart-items-container">
+            <div class="cart-empty-message">Your shopping bag is currently empty.</div>
+        </div>
+        <div id="cart-summary" class="cart-summary hidden">
+            <div class="summary-row">
+                <span>Subtotal</span>
+                <span id="cart-subtotal">₹0</span>
+            </div>
+            <p class="summary-tax-note">Shipping and taxes calculated at checkout.</p>
+            <button id="checkout-btn" class="btn btn-primary btn-block">Proceed to Checkout</button>
+        </div>
+    </div>
+    <div id="cart-overlay" class="drawer-overlay"></div>
+
+    <!-- Favorites Drawer -->
+    <div id="favorites-drawer" class="cart-drawer">
+        <div class="cart-drawer-header">
+            <h3>Your Favorites</h3>
+            <button id="favorites-close-btn" class="close-btn" aria-label="Close Favorites">&times;</button>
+        </div>
+        <div id="favorites-items-container" class="cart-items-container">
+            <div class="cart-empty-message">You haven't saved any favorites yet.</div>
+        </div>
+    </div>
+    <div id="favorites-overlay" class="drawer-overlay"></div>
+
+    <!-- Auth / OTP Modal -->
+    <div id="auth-modal" class="modal">
+        <div class="modal-content">
+            <button id="auth-modal-close" class="close-btn">&times;</button>
+            <div class="text-center" style="margin-bottom: 1.5rem;">
+                <h4 class="text-gold"
+                    style="letter-spacing: 2px; text-transform: uppercase; font-size: 0.8rem; margin-bottom: 0.5rem;">
+                    SHRINZA Account</h4>
+                <h2 class="text-burgundy" id="auth-modal-title">Login</h2>
+            </div>
+
+            <form id="auth-login-form" class="auth-form">
+                <div class="form-group">
+                    <label for="auth-login-mobile">Mobile Number</label>
+                    <input type="tel" id="auth-login-mobile" placeholder="10-digit mobile number" pattern="[0-9]{10}"
+                        maxlength="10" required>
+                </div>
+                <div class="form-actions" style="justify-content: flex-end;">
+                    <button type="submit" class="btn btn-primary">Send OTP</button>
+                </div>
+                <p class="auth-switch">New to SHRINZA? <a href="#" id="auth-goto-signup">Sign Up</a></p>
+            </form>
+
+            <form id="auth-signup-form" class="auth-form hidden">
+                <p id="auth-signup-notice" class="auth-otp-error hidden"></p>
+                <div class="form-group">
+                    <label for="auth-signup-name">Full Name</label>
+                    <input type="text" id="auth-signup-name" placeholder="Enter your name" required>
+                </div>
+                <div class="form-group">
+                    <label for="auth-signup-mobile">Mobile Number</label>
+                    <input type="tel" id="auth-signup-mobile" placeholder="10-digit mobile number"
+                        pattern="[0-9]{10}" maxlength="10" required>
+                </div>
+                <div class="form-group">
+                    <label for="auth-signup-email">Email Address</label>
+                    <input type="email" id="auth-signup-email" placeholder="Enter email" required>
+                </div>
+                <div class="form-group">
+                    <label for="auth-signup-city">City</label>
+                    <input type="text" id="auth-signup-city" placeholder="Enter your city" required>
+                </div>
+                <div class="form-actions" style="justify-content: flex-end;">
+                    <button type="submit" class="btn btn-primary">Send OTP</button>
+                </div>
+                <p class="auth-switch">Already have an account? <a href="#" id="auth-goto-login">Login</a></p>
+            </form>
+
+            <form id="auth-step-otp" class="auth-form hidden">
+                <p class="auth-otp-hint">We've sent a 4-digit code to <strong id="auth-otp-mobile-display"></strong>.
+                </p>
+                <p id="auth-otp-demo" class="auth-otp-demo"></p>
+                <div class="form-group">
+                    <label for="auth-otp-input">Enter OTP</label>
+                    <input type="text" id="auth-otp-input" placeholder="4-digit code" maxlength="4"
+                        inputmode="numeric" required>
+                </div>
+                <p id="auth-otp-error" class="auth-otp-error hidden">Incorrect OTP. Please try again.</p>
+                <div class="form-actions">
+                    <button type="button" id="auth-change-number" class="btn btn-outline"
+                        style="color: var(--color-primary); border-color: rgba(128, 0, 32, 0.3);">Back</button>
+                    <button type="submit" class="btn btn-primary">Verify &amp; Continue</button>
+                </div>
+                <p class="auth-resend">Didn't get it? <a href="#" id="auth-resend-otp">Resend OTP</a></p>
+            </form>
+        </div>
+    </div>
+
+    <!-- Checkout Delivery Details Modal -->
+    <div id="checkout-modal" class="modal">
+        <div class="modal-content">
+            <button id="checkout-modal-close" class="close-btn">&times;</button>
+            <div class="text-center" style="margin-bottom: 1.5rem;">
+                <h4 class="text-gold"
+                    style="letter-spacing: 2px; text-transform: uppercase; font-size: 0.8rem; margin-bottom: 0.5rem;">
+                    Delivery Details</h4>
+                <h2 class="text-burgundy">Where should we deliver this?</h2>
+            </div>
+            <form id="checkout-details-form">
+                <div class="form-group">
+                    <label for="checkout-name">Full Name</label>
+                    <input type="text" id="checkout-name" required>
+                </div>
+                <div class="form-group">
+                    <label for="checkout-phone">Phone Number</label>
+                    <input type="tel" id="checkout-phone" required>
+                </div>
+                <div class="form-group">
+                    <label for="checkout-address">Address</label>
+                    <input type="text" id="checkout-address" placeholder="House no., street, locality" required>
+                </div>
+                <div class="form-group" style="display: flex; gap: 1rem;">
+                    <div style="flex: 1;">
+                        <label for="checkout-city">City</label>
+                        <input type="text" id="checkout-city" required>
+                    </div>
+                    <div style="flex: 1;">
+                        <label for="checkout-pincode">Pincode</label>
+                        <input type="text" id="checkout-pincode" pattern="[0-9]{6}" maxlength="6" required>
+                    </div>
+                </div>
+                <div class="form-actions">
+                    <button type="submit" class="btn btn-gold">Continue to Payment</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Search Modal -->
+    <div id="search-modal" class="modal search-modal">
+        <div class="modal-content">
+            <button id="search-modal-close" class="close-btn">&times;</button>
+            <div class="text-center" style="margin-bottom: 1.5rem;">
+                <h4 class="text-gold"
+                    style="letter-spacing: 2px; text-transform: uppercase; font-size: 0.8rem; margin-bottom: 0.5rem;">
+                    Search SHRINZA</h4>
+                <h2 class="text-burgundy">What are you looking for?</h2>
+            </div>
+            <form id="search-form">
+                <div class="form-group">
+                    <input type="text" id="search-input" placeholder="Search for gowns, lehengas, sarees..."
+                        autocomplete="off" required>
+                </div>
+                <div class="form-actions" style="justify-content: center;">
+                    <button type="submit" class="btn btn-primary">Search</button>
+                </div>
+            </form>
+            <div class="search-suggestions">
+                <p class="search-suggestions-label">Popular Searches</p>
+                <div class="search-suggestions-chips">
+                    <button type="button" class="search-chip" data-query="gown">Gowns</button>
+                    <button type="button" class="search-chip" data-query="lehenga">Lehengas</button>
+                    <button type="button" class="search-chip" data-query="saree">Sarees</button>
+                    <button type="button" class="search-chip" data-query="bridal">Bridal</button>
+                </div>
+            </div>
+            <p id="search-no-results" class="search-no-results hidden">No products matched your search. Try
+                "Gowns", "Lehengas", or "Sarees".</p>
+        </div>
+    </div>
+
+    <!-- Modal Base Overlay -->
+    <div id="modal-overlay" class="modal-overlay"></div>
+
+    <script src="scripts/catalog.js"></script>
+    <script src="scripts/store.js"></script>
+    <script src="scripts/main.js"></script>
     <script src="scripts/navbar-scroll.js"></script>
-    <script src="scripts/favorites.js"></script>
 </body>
 
 </html>

@@ -642,10 +642,15 @@ body.page-scrolled .hero .nav-icon-btn:hover {
     box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
 }
 
+.bestseller-card a {
+    display: block;
+}
+
 .bestseller-image {
     width: 100%;
     height: auto;
     display: block;
+    cursor: pointer;
 }
 
 .bestseller-image.bestseller-crop {

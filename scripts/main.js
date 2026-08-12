@@ -1,15 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // --- Product Database ---
-    const PRODUCTS = {
-        "1": { name: "Royal Velvet Gown", price: 12999, img: "assets/product1.png", desc: "Crafted in heavy royal velvet, this Indo-Western fusion gown features premium hand embroidery along the borders and classic necklines." },
-        "2": { name: "Floral Crop Set", price: 8499, img: "assets/product2.png", desc: "A fresh and modern silhouette featuring a floral embroidered crop top with a flared georgette skirt. Perfect for light festivities." },
-        "3": { name: "Fusion Drape Saree", price: 15000, img: "assets/product3.png", desc: "Bringing together structural drapes and classic saree folds, this pre-stitched fusion drape saree offers unmatched elegance with absolute comfort." },
-        "4": { name: "Emerald Heritage Lehenga", price: 45999, img: "assets/bridal-specialty.png", desc: "A masterpiece design from the SHRINZA bridal line. Features a deep emerald color block, zardozi gold threadwork, and an organza dupatta." },
-        "5": { name: "Mint Floral Embroidered Gown", price: 18999, img: "assets/bestseller-mint-floral-gown.jpeg", desc: "A soft mint silhouette hand-embroidered with florals from bodice to hem, finished with delicate detailing along the border." },
-        "6": { name: "Beige Indo-Western Jacket-Style Dhoti Set", price: 22999, img: "assets/bestseller-jacket-dhoti.avif", desc: "A mirror-work jacket paired with a tiered sharara-style dhoti, hand-finished for a contemporary bridesmaid or sangeet look." },
-        "7": { name: "Grey Embroidered Jacket Lehenga Set", price: 28999, img: "assets/bestseller-grey-embroidered-jacket-lehenga.webp", desc: "A heavily embroidered open jacket layered over a flowing lehenga, finished with gold threadwork along every border." },
-        "8": { name: "Pink Cape Sleeve Crop Top & Skirt Set", price: 9999, img: "assets/bestseller-pink-cape-set.jpg", desc: "A hand-embellished cape-sleeve crop top paired with a flowing skirt, in a soft blush pink for daytime celebrations." }
-    };
+    // --- Product Database (shared with product.js via scripts/catalog.js) ---
+    const PRODUCTS = SHRINZA_PRODUCTS;
 
     // --- State Storage ---
     let cart = JSON.parse(localStorage.getItem('shrinza_cart')) || [];
@@ -154,16 +145,18 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    function startCheckout() {
+        if (cart.length === 0) return;
+        const session = ShrinzaStore.getSession();
+        if (!session) {
+            openAuthModal('checkout');
+        } else {
+            openCheckoutModal();
+        }
+    }
+
     if (checkoutBtn) {
-        checkoutBtn.addEventListener('click', () => {
-            if (cart.length === 0) return;
-            const session = ShrinzaStore.getSession();
-            if (!session) {
-                openAuthModal('checkout');
-            } else {
-                openCheckoutModal();
-            }
-        });
+        checkoutBtn.addEventListener('click', startCheckout);
     }
 
     // Attach Add to Cart from collection cards directly
@@ -247,16 +240,23 @@ document.addEventListener('DOMContentLoaded', () => {
             if (!product) return;
             const itemEl = document.createElement('div');
             itemEl.className = 'cart-item';
+            const priceMarkup = product.priceOnRequest
+                ? `<a href="https://wa.me/919891614960?text=Hi%2C%20I%27d%20like%20to%20know%20the%20price%20for%20the%20${encodeURIComponent(product.name)}." class="cart-item-meta favorite-price-link" target="_blank" rel="noopener">Price on Request</a>`
+                : `<p class="cart-item-meta">₹${product.price.toLocaleString('en-IN')}</p>`;
+            const actionMarkup = product.priceOnRequest
+                ? `<a href="https://wa.me/919891614960?text=Hi%2C%20I%27d%20like%20to%20know%20the%20price%20for%20the%20${encodeURIComponent(product.name)}." class="btn btn-add-to-cart" target="_blank" rel="noopener"
+                        style="width: auto; padding: 0.4rem 0.9rem; font-size: 0.7rem;">Chat on WhatsApp</a>`
+                : `<button class="btn btn-add-to-cart favorite-add-to-cart" data-id="${id}"
+                        style="width: auto; padding: 0.4rem 0.9rem; font-size: 0.7rem;">Add to Cart</button>`;
             itemEl.innerHTML = `
                 <img src="${product.img}" alt="${product.name}" class="cart-item-image">
                 <div class="cart-item-details">
                     <div>
                         <h4 class="cart-item-name">${product.name}</h4>
-                        <p class="cart-item-meta">₹${product.price.toLocaleString('en-IN')}</p>
+                        ${priceMarkup}
                     </div>
                     <div class="cart-item-pricing">
-                        <button class="btn btn-add-to-cart favorite-add-to-cart" data-id="${id}"
-                            style="width: auto; padding: 0.4rem 0.9rem; font-size: 0.7rem;">Add to Cart</button>
+                        ${actionMarkup}
                         <button class="cart-qty-btn remove-favorite" data-id="${id}"
                             aria-label="Remove from Favorites">&times;</button>
                     </div>
@@ -295,7 +295,7 @@ document.addEventListener('DOMContentLoaded', () => {
         currentQuickViewProductId = id;
         if (qvImage) qvImage.src = product.img;
         if (qvTitle) qvTitle.textContent = product.name;
-        if (qvPrice) qvPrice.textContent = '₹' + product.price.toLocaleString('en-IN');
+        if (qvPrice) qvPrice.textContent = product.priceOnRequest ? 'Price on Request' : '₹' + product.price.toLocaleString('en-IN');
         if (qvDescription) qvDescription.textContent = product.desc;
         if (qvSize) qvSize.selectedIndex = 1; // Default selector to Medium 'M'
 
@@ -729,7 +729,11 @@ document.addEventListener('DOMContentLoaded', () => {
         closeAllModals();
 
         if (match.url.startsWith('#')) {
-            scrollToAndHighlight(match.url.slice(1));
+            if (document.getElementById(match.url.slice(1))) {
+                scrollToAndHighlight(match.url.slice(1));
+            } else {
+                window.location.href = 'index.html' + match.url;
+            }
         } else {
             window.location.href = match.url;
         }
@@ -895,5 +899,18 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }
     }
+
+    // Small global surface so other page scripts (e.g. product.js on the
+    // product detail page) can reuse the same cart/favorites logic instead
+    // of re-implementing it.
+    window.ShrinzaCart = {
+        addToCart: addToCart,
+        startCheckout: startCheckout,
+        openCartDrawer: () => toggleCart(true)
+    };
+    window.ShrinzaFavorites = {
+        toggle: toggleFavorite,
+        isFavorite: (id) => favorites.includes(id)
+    };
 });
 
