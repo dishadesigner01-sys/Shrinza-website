@@ -28,13 +28,53 @@
     background: rgba(0, 0, 0, 0.45);
 }
 
-#gowns-hero .navbar {
-    position: absolute;
+#gowns-hero .navbar,
+#shop-all-hero .navbar {
+    position: fixed;
     top: 0;
     left: 0;
     width: 100%;
-    z-index: 20;
+    z-index: 1000;
     box-shadow: none;
+    background-color: transparent;
+}
+
+#gowns-hero .nav-links a,
+#shop-all-hero .nav-links a,
+#gowns-hero .nav-icon-btn,
+#shop-all-hero .nav-icon-btn {
+    color: var(--color-white);
+}
+
+#gowns-hero .nav-links a:hover,
+#gowns-hero .nav-links a.active-link,
+#shop-all-hero .nav-links a:hover,
+#shop-all-hero .nav-links a.active-link,
+#gowns-hero .nav-icon-btn:hover,
+#shop-all-hero .nav-icon-btn:hover {
+    color: var(--color-cream);
+}
+
+body.page-scrolled #gowns-hero .navbar,
+body.page-scrolled #shop-all-hero .navbar {
+    background-color: var(--color-white);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
+}
+
+body.page-scrolled #gowns-hero .nav-links a,
+body.page-scrolled #shop-all-hero .nav-links a,
+body.page-scrolled #gowns-hero .nav-icon-btn,
+body.page-scrolled #shop-all-hero .nav-icon-btn {
+    color: var(--color-text-dark);
+}
+
+body.page-scrolled #gowns-hero .nav-links a:hover,
+body.page-scrolled #gowns-hero .nav-links a.active-link,
+body.page-scrolled #shop-all-hero .nav-links a:hover,
+body.page-scrolled #shop-all-hero .nav-links a.active-link,
+body.page-scrolled #gowns-hero .nav-icon-btn:hover,
+body.page-scrolled #shop-all-hero .nav-icon-btn:hover {
+    color: var(--color-primary);
 }
 
 .category-page-hero-content {
@@ -95,6 +135,7 @@
 }
 
 .category-showcase-image-wrapper {
+    position: relative;
     aspect-ratio: 3/4;
     overflow: hidden;
 }
@@ -127,6 +168,18 @@
     font-size: 1.15rem;
     font-weight: 600;
     margin-bottom: 0.85rem;
+}
+
+.category-showcase-price-link {
+    display: inline-block;
+    text-decoration: none;
+    border-bottom: 1px dashed var(--color-accent);
+    cursor: pointer;
+}
+
+.category-showcase-price-link:hover {
+    color: var(--color-primary);
+    border-bottom-color: var(--color-primary);
 }
 
 .category-showcase-details p.category-showcase-desc {

@@ -45,7 +45,6 @@
             <a href="index.html#hero">Home</a>
             <a href="index.html#categories" class="active-link">SHOP</a>
             <a href="index.html#bestsellers">Bestseller</a>
-            <a href="index.html#featured">Exclusive Offer</a>
             <a href="bridal-studio.html">Bridal Studio</a>
             <a href="discover.html">Discover</a>
             <a href="index.html#footer">Contact</a>
@@ -73,20 +72,37 @@
         <div class="category-showcase-grid">
             <div class="category-showcase-card">
                 <div class="category-showcase-image-wrapper">
+                    <button class="favorite-toggle-btn" data-id="1" type="button" aria-label="Add to Favorites">
+                        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path
+                                d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z">
+                            </path>
+                        </svg>
+                    </button>
                     <img src="assets/product1.png" alt="Royal Velvet Gown">
                 </div>
                 <div class="category-showcase-details">
                     <h3>Royal Velvet Gown</h3>
-                    <p class="category-showcase-price">&#8377;12,999</p>
+                    <a href="https://wa.me/919891614960?text=Hi%2C%20I%27d%20like%20to%20know%20the%20price%20for%20the%20Royal%20Velvet%20Gown."
+                        class="category-showcase-price category-showcase-price-link" target="_blank"
+                        rel="noopener">Price on Request</a>
                     <p class="category-showcase-desc">
                         Crafted in heavy royal velvet, this Indo-Western fusion gown features premium hand
                         embroidery along the borders and classic necklines.
                     </p>
-                    <a href="https://wa.me/919891614960" class="btn btn-primary" target="_blank" rel="noopener">Enquire on WhatsApp</a>
                 </div>
             </div>
             <div class="category-showcase-card">
                 <div class="category-showcase-image-wrapper">
+                    <button class="favorite-toggle-btn" data-id="2" type="button" aria-label="Add to Favorites">
+                        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path
+                                d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z">
+                            </path>
+                        </svg>
+                    </button>
                     <img src="assets/product2.png" alt="Floral Crop Set">
                 </div>
                 <div class="category-showcase-details">
@@ -96,7 +112,6 @@
                         A fresh and modern silhouette featuring a floral embroidered crop top with a flared
                         georgette skirt. Perfect for light festivities.
                     </p>
-                    <a href="https://wa.me/919891614960" class="btn btn-primary" target="_blank" rel="noopener">Enquire on WhatsApp</a>
                 </div>
             </div>
         </div>
@@ -205,6 +220,8 @@
         </div>
     </footer>
 
+    <script src="scripts/navbar-scroll.js"></script>
+    <script src="scripts/favorites.js"></script>
 </body>
 
 </html>

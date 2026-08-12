@@ -4,7 +4,11 @@ document.addEventListener('DOMContentLoaded', () => {
         "1": { name: "Royal Velvet Gown", price: 12999, img: "assets/product1.png", desc: "Crafted in heavy royal velvet, this Indo-Western fusion gown features premium hand embroidery along the borders and classic necklines." },
         "2": { name: "Floral Crop Set", price: 8499, img: "assets/product2.png", desc: "A fresh and modern silhouette featuring a floral embroidered crop top with a flared georgette skirt. Perfect for light festivities." },
         "3": { name: "Fusion Drape Saree", price: 15000, img: "assets/product3.png", desc: "Bringing together structural drapes and classic saree folds, this pre-stitched fusion drape saree offers unmatched elegance with absolute comfort." },
-        "4": { name: "Emerald Heritage Lehenga", price: 45999, img: "assets/bridal-specialty.png", desc: "A masterpiece design from the SHRINZA bridal line. Features a deep emerald color block, zardozi gold threadwork, and an organza dupatta." }
+        "4": { name: "Emerald Heritage Lehenga", price: 45999, img: "assets/bridal-specialty.png", desc: "A masterpiece design from the SHRINZA bridal line. Features a deep emerald color block, zardozi gold threadwork, and an organza dupatta." },
+        "5": { name: "Mint Floral Embroidered Gown", price: 18999, img: "assets/bestseller-mint-floral-gown.jpeg", desc: "A soft mint silhouette hand-embroidered with florals from bodice to hem, finished with delicate detailing along the border." },
+        "6": { name: "Beige Indo-Western Jacket-Style Dhoti Set", price: 22999, img: "assets/bestseller-jacket-dhoti.avif", desc: "A mirror-work jacket paired with a tiered sharara-style dhoti, hand-finished for a contemporary bridesmaid or sangeet look." },
+        "7": { name: "Grey Embroidered Jacket Lehenga Set", price: 28999, img: "assets/bestseller-grey-embroidered-jacket-lehenga.webp", desc: "A heavily embroidered open jacket layered over a flowing lehenga, finished with gold threadwork along every border." },
+        "8": { name: "Pink Cape Sleeve Crop Top & Skirt Set", price: 9999, img: "assets/bestseller-pink-cape-set.jpg", desc: "A hand-embellished cape-sleeve crop top paired with a flowing skirt, in a soft blush pink for daytime celebrations." }
     };
 
     // --- State Storage ---

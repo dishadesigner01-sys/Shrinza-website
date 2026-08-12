@@ -177,6 +177,17 @@ img {
     font-weight: 700;
     letter-spacing: 1.5px;
     text-transform: uppercase;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1001;
+    transition: transform 0.3s ease;
+}
+
+/* Slides away with the header once the page scrolls, so the navbar can take top:0 */
+body.page-scrolled .announcement-bar {
+    transform: translateY(-100%);
 }
 
 /* --- Navigation --- */
@@ -184,20 +195,22 @@ img {
     display: flex;
     flex-direction: column;
     padding: 0.5rem var(--spacing-md);
-    background-color: transparent;
+    background-color: var(--color-white);
     position: sticky;
     top: 0;
     z-index: 1000;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    transition: background-color 0.3s ease, box-shadow 0.3s ease, top 0.3s ease;
 }
 
 .hero .navbar {
-    position: absolute;
-    top: 0;
+    position: fixed;
+    top: 2.5rem;
     left: 0;
     width: 100%;
-    z-index: 20;
+    z-index: 1000;
     box-shadow: none;
+    background-color: transparent;
 }
 
 .hero .nav-links a {
@@ -215,6 +228,31 @@ img {
 
 .hero .nav-icon-btn:hover {
     color: var(--color-cream);
+}
+
+/* Header turns solid white with dark text once scrolled — the announcement
+   bar has slid away by this point, so the navbar reclaims top:0. */
+body.page-scrolled .hero .navbar {
+    top: 0;
+    background-color: var(--color-white);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
+}
+
+body.page-scrolled .hero .nav-links a {
+    color: var(--color-text-dark);
+}
+
+body.page-scrolled .hero .nav-links a:hover,
+body.page-scrolled .hero .nav-links a.active-link {
+    color: var(--color-primary);
+}
+
+body.page-scrolled .hero .nav-icon-btn {
+    color: var(--color-text-dark);
+}
+
+body.page-scrolled .hero .nav-icon-btn:hover {
+    color: var(--color-primary);
 }
 
 .navbar-top {
@@ -435,12 +473,12 @@ img {
     font-size: 0.85rem;
     letter-spacing: 1.5px;
     text-transform: uppercase;
-    color: var(--color-white);
+    color: var(--color-text-dark);
 }
 
 .nav-links a:hover,
 .nav-links a.active-link {
-    color: var(--color-cream);
+    color: var(--color-primary);
 }
 
 .nav-actions {
@@ -913,24 +951,6 @@ img {
     box-shadow: 0 25px 60px rgba(0, 0, 0, 0.18);
 }
 
-/* --- Bridal Studio page: transparent navbar sits on a light background, needs dark text --- */
-#bridal-studio-page .nav-links a {
-    color: var(--color-text-dark);
-}
-
-#bridal-studio-page .nav-links a:hover,
-#bridal-studio-page .nav-links a.active-link {
-    color: var(--color-primary);
-}
-
-#bridal-studio-page .nav-icon-btn {
-    color: var(--color-text-dark);
-}
-
-#bridal-studio-page .nav-icon-btn:hover {
-    color: var(--color-primary);
-}
-
 /* --- Footer --- */
 footer {
     background-color: var(--color-text-dark);
@@ -1188,7 +1208,7 @@ footer {
     background: none;
     border: none;
     cursor: pointer;
-    color: var(--color-white);
+    color: var(--color-text-dark);
     position: relative;
     padding: 0.25rem;
     display: flex;
@@ -1198,7 +1218,7 @@ footer {
 }
 
 .nav-icon-btn:hover {
-    color: var(--color-cream);
+    color: var(--color-primary);
 }
 
 .cart-badge {

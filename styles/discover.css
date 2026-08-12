@@ -29,12 +29,40 @@
 }
 
 .discover-hero .navbar {
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
     width: 100%;
-    z-index: 20;
+    z-index: 1000;
     box-shadow: none;
+    background-color: transparent;
+}
+
+.discover-hero .nav-links a,
+.discover-hero .nav-icon-btn {
+    color: var(--color-white);
+}
+
+.discover-hero .nav-links a:hover,
+.discover-hero .nav-links a.active-link,
+.discover-hero .nav-icon-btn:hover {
+    color: var(--color-cream);
+}
+
+body.page-scrolled .discover-hero .navbar {
+    background-color: var(--color-white);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
+}
+
+body.page-scrolled .discover-hero .nav-links a,
+body.page-scrolled .discover-hero .nav-icon-btn {
+    color: var(--color-text-dark);
+}
+
+body.page-scrolled .discover-hero .nav-links a:hover,
+body.page-scrolled .discover-hero .nav-links a.active-link,
+body.page-scrolled .discover-hero .nav-icon-btn:hover {
+    color: var(--color-primary);
 }
 
 .discover-hero-content {
